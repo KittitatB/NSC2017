@@ -1,2 +1,2 @@
 # NSC2017
-[embed]https://drive.google.com/open?id=17Eqa-phmazQ0Syu_-LGe0p_Il7mTM-bH[/embed]
+<iframe src="https://docs.google.com/viewer?srcid=17Eqa-phmazQ0Syu_-LGe0p_Il7mTM-bH&pid=explorer&efh=false&a=v&chrome=false&embedded=true" width="580px" height="480px"></iframe>
