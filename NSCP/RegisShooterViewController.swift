@@ -23,7 +23,7 @@ class RegisShooterViewController: UIViewController, UIImagePickerControllerDeleg
     @IBOutlet weak var selectImageButton: UIButton!
     var imageFileName = ""
     var type:String?
-    
+    var uploadCompleted = false;
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -36,32 +36,38 @@ class RegisShooterViewController: UIViewController, UIImagePickerControllerDeleg
     
     
     @IBAction func postTapped(_ sender: AnyObject) {
-        
-        if let uid = Auth.auth().currentUser?.uid {
-            if let username = usernameTextField.text {
-                if let interest = interestTextField.text {
-                    if let link = linkTextField.text {
-                        if let description = descriptionTextField.text {
-                            let postObject = [
-                                "uid" : uid,
-                                "username" : username,
-                                "location" : interest,
-                                "link" : link,
-                                "description" : description,
-                                "image" : imageFileName
-                            ]
+        if(self.uploadCompleted){
+            if let uid = Auth.auth().currentUser?.uid {
+                if let username = usernameTextField.text {
+                    if let interest = interestTextField.text {
+                        if let link = linkTextField.text {
+                            if let description = descriptionTextField.text {
+                                let postObject = [
+                                    "uid" : uid,
+                                    "username" : username,
+                                    "location" : interest,
+                                    "link" : link,
+                                    "description" : description,
+                                    "image" : imageFileName
+                                ]
                             
-                            Database.database().reference().child(type!).childByAutoId().setValue(postObject);
+                                Database.database().reference().child(type!).childByAutoId().setValue(postObject);
                             
-                            let alert = UIAlertController(title: "Success", message: "Your has been registed!", preferredStyle: .alert)
-                            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                            self.present(alert, animated: true, completion: nil)
-                            print("Post to Firebase.")
-                            
+                                let alert = UIAlertController(title: "Success", message: "Your has been registed!", preferredStyle: .alert)
+                                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                                self.present(alert, animated: true, completion: nil)
+                                print("Post to Firebase.")
+                                let vc = self.storyboard?.instantiateViewController(withIdentifier: "TabViewController")
+                                self.present(vc!, animated: true, completion: nil)
+                            }
                         }
                     }
                 }
             }
+        }else{
+            let alert = UIAlertController(title: "Uploading Image", message: "Try Again!", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         }
     }
     
@@ -83,6 +89,7 @@ class RegisShooterViewController: UIViewController, UIImagePickerControllerDeleg
             if error == nil{
                 print("Sucessfully uploading image.")
                 print(self.imageFileName)
+                self.uploadCompleted = true;
             } else {
                 print("error uploading image:\(error?.localizedDescription)")
             }

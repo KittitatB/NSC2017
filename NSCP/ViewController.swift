@@ -31,6 +31,15 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        if Auth.auth().currentUser != nil {
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "TabViewController")
+            self.present(vc!, animated: true, completion: nil)
+        }
+    }
+    
     
     @IBAction func signinTapped(_ sender: AnyObject) {
         let username = usernameTextField.text
@@ -41,7 +50,7 @@ class ViewController: UIViewController {
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
             }else{
-                let vc = self.storyboard?.instantiateViewController(withIdentifier: "login")
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "TabViewController")
                 self.present(vc!, animated: true, completion: nil)
             }
         }

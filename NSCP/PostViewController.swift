@@ -57,7 +57,7 @@ class PostViewController: UIViewController,UIImagePickerControllerDelegate,UINav
                                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                                 self.present(alert, animated: true, completion: nil)
                                 print("Post to Firebase.")
-                            
+
                         }
                     }
                 }

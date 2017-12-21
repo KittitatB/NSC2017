@@ -29,7 +29,6 @@ class UserViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
     func loadData(){
         let uid = Auth.auth().currentUser?.uid
         Database.database().reference().child("photographer").queryOrdered(byChild: "uid").queryEqual(toValue: uid).observe(.childAdded, with: { (DataSnapshot) in
@@ -60,16 +59,18 @@ class UserViewController: UIViewController {
     }
 
 
+    @IBAction func LoggingOut(_ sender: AnyObject) {
+        do{
+            print("KUY")
+            try Auth.auth().signOut()
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "LandingVC")
+            self.present(vc!, animated: true, completion: nil)
+
+        }catch{
+            print("Error signing out user.")
+        }
+    }
+
 
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
