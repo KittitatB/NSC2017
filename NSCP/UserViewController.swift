@@ -10,18 +10,32 @@ import UIKit
 import Firebase
 import FirebaseStorage
 
-class UserViewController: UIViewController {
+class UserViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource {
     
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var userFacebookLink: UILabel!
     @IBOutlet weak var userInterest: UILabel!
+    
+    @IBOutlet weak var collectionView: UICollectionView!
+    
+    
     var imageName = ""
+    let reuseIdentifier = "collectionCell"
+    var posts = NSMutableArray()
+    let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0, right: 20.0)
+    let itemsPerRow = 3
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        let width = UIScreen.main.bounds.width - 15
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
+        layout.itemSize = CGSize(width: width / 3, height: width / 3)
+        layout.minimumInteritemSpacing = 0
+        layout.minimumLineSpacing = 3
+        collectionView!.collectionViewLayout = layout
         loadData()
-    
         }
 
     override func didReceiveMemoryWarning() {
@@ -30,6 +44,17 @@ class UserViewController: UIViewController {
     }
     
     func loadData(){
+        
+        Database.database().reference().child("posts").observeSingleEvent(of: .value, with: {
+            (DataSnapshot) in
+            if let postsDictionary = DataSnapshot.value as? [String: AnyObject]{
+                for post in postsDictionary{
+                    self.posts.add(post.value)
+                }
+                self.collectionView.reloadData()
+            }
+        })
+        
         let uid = Auth.auth().currentUser?.uid
         Database.database().reference().child("photographer").queryOrdered(byChild: "uid").queryEqual(toValue: uid).observe(.childAdded, with: { (DataSnapshot) in
             let dict = DataSnapshot.value as! [String: AnyObject]
@@ -70,7 +95,41 @@ class UserViewController: UIViewController {
             print("Error signing out user.")
         }
     }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.posts.count
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        // get a reference to our storyboard cell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! UserCollectionViewCell
+        
+        // Use the outlet in our custom class to get a reference to the UILabel in the cell
+        cell.Pic.text = "1"
+        cell.backgroundColor = UIColor.cyan
+        
+        return cell
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // handle tap events
+        print("You selected cell #\(indexPath.item)!")
+    }
 
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let paddingSpace = Int(sectionInsets.left) * (itemsPerRow + 1)
+        let availableWidth = Int(view.frame.width) - paddingSpace
+        let widthPerItem = availableWidth / itemsPerRow
+        
+        return CGSize(width: widthPerItem, height: widthPerItem)
+    }
+    
 
     
 }

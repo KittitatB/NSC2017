@@ -91,7 +91,7 @@ class PostViewController: UIViewController,UIImagePickerControllerDelegate,UINav
             if error == nil{
                 print("Sucessfully uploading image.")
                 self.imageFileName = "\(randomName).jpg"
-                uploadCompleted = true
+                self.uploadCompleted = true
             } else {
                 print("error uploading image:\(error?.localizedDescription)")
             }
@@ -125,11 +125,6 @@ class PostViewController: UIViewController,UIImagePickerControllerDelegate,UINav
             uploadImage(image: pickedImage)
             picker.dismiss(animated: true, completion: nil)
         }
-    }
-    
-    
-    @IBAction func BackTapped(_ sender: AnyObject) {
-        self.navigationController?.popViewController(animated: true)
     }
     
 
