@@ -405,7 +405,13 @@
                             <constraint firstItem="brr-Bi-xof" firstAttribute="leading" secondItem="f6v-7w-DQN" secondAttribute="leadingMargin" constant="20" id="zbU-sy-lYR"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Post" id="1o6-df-iBM"/>
+                    <navigationItem key="navigationItem" title="Post" id="1o6-df-iBM">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="bJW-It-vJ4">
+                            <connections>
+                                <action selector="BackTapped:" destination="06f-AB-Ym6" id="UOk-ey-w4a"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="descriptionTextField" destination="9UP-4P-q70" id="vkm-1L-XEl"/>
                         <outlet property="linkTextField" destination="q2C-sc-GLZ" id="sbf-Lq-7Da"/>
@@ -417,7 +423,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wlb-Ea-nNb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1977" y="880"/>
+            <point key="canvasLocation" x="8911" y="1254"/>
         </scene>
         <!--Post-->
         <scene sceneID="T7m-j3-wcD">
@@ -516,7 +522,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ghp-mN-ZyC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2239.1999999999998" y="1586.3568215892055"/>
+            <point key="canvasLocation" x="4502" y="2422"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="XVg-ig-mgx">
@@ -562,10 +568,10 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="photographerCell" rowHeight="457" id="kfk-bC-KRd" customClass="PhotographerTableViewCell" customModule="NSCP" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="457"/>
+                                        <rect key="frame" x="0.0" y="28" width="1000" height="457"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kfk-bC-KRd" id="G5G-ZQ-YSl">
-                                            <frame key="frameInset" width="375" height="456"/>
+                                            <frame key="frameInset" width="1000" height="456"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R7k-DF-fNw" customClass="ViewWithBorder" customModule="NSCP" customModuleProvider="target">
@@ -687,7 +693,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Fn-bo-mkO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1977" y="73"/>
+            <point key="canvasLocation" x="9270" y="2166"/>
         </scene>
         <!--User View Controller-->
         <scene sceneID="h3U-TV-eZD">
@@ -782,6 +788,11 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="tId-fp-s2w">
+                        <barButtonItem key="leftBarButtonItem" title="Post" id="VR2-jo-CUF">
+                            <connections>
+                                <segue destination="evq-r4-Xcw" kind="show" id="l98-nf-uVB"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Logout" id="7nj-f9-FMu">
                             <connections>
                                 <action selector="LoggingOut:" destination="w52-fT-N2b" id="Bcn-CJ-RVU"/>

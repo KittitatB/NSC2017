@@ -79,6 +79,7 @@ class RegisShooterViewController: UIViewController, UIImagePickerControllerDeleg
     
     
     func uploadImage(image: UIImage){
+        uploadCompleted = false
         let randomName = randomStringWithLength(length: 10)
         let imageData = UIImageJPEGRepresentation(image, 1.0)
         self.imageFileName = "\(randomName).jpg"

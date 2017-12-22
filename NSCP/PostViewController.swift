@@ -22,6 +22,7 @@ class PostViewController: UIViewController,UIImagePickerControllerDelegate,UINav
     @IBOutlet weak var previewImageView: UIImageView!
     @IBOutlet weak var selectImageButton: UIButton!
     var imageFileName = ""
+    var uploadCompleted = false;
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,32 +37,38 @@ class PostViewController: UIViewController,UIImagePickerControllerDelegate,UINav
     
 
     @IBAction func postTapped(_ sender: AnyObject) {
-        
-        if let uid = Auth.auth().currentUser?.uid {
-            if let model = modelTextField.text {
-                if let location = locationTextField.text {
-                    if let link = linkTextField.text {
-                        if let description = descriptionTextField.text {
-                                let postObject = [
-                                    "uid" : uid,
-                                    "model" : model,
-                                    "location" : location,
-                                    "link" : link,
-                                    "description" : description,
-                                    "image" : imageFileName
-                                ]
+        if uploadCompleted {
+            if let uid = Auth.auth().currentUser?.uid {
+                if let model = modelTextField.text {
+                    if let location = locationTextField.text {
+                        if let link = linkTextField.text {
+                            if let description = descriptionTextField.text {
+                                    let postObject = [
+                                        "uid" : uid,
+                                        "model" : model,
+                                        "location" : location,
+                                        "link" : link,
+                                        "description" : description,
+                                        "image" : imageFileName
+                                    ]
                                 
-                                Database.database().reference().child("posts").childByAutoId().setValue(postObject);
+                                    Database.database().reference().child("posts").childByAutoId().setValue(postObject);
                                 
-                                let alert = UIAlertController(title: "Success", message: "Your post has been sent!", preferredStyle: .alert)
-                                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                                self.present(alert, animated: true, completion: nil)
-                                print("Post to Firebase.")
+                                    let alert = UIAlertController(title: "Success", message: "Your post has been sent!", preferredStyle: .alert)
+                                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                                    self.present(alert, animated: true, completion: nil)
+                                    print("Post to Firebase.")
 
+                            }
                         }
                     }
                 }
             }
+        }else{
+            let alert = UIAlertController(title: "Uploading Image", message: "Try Again!", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+
         }
     }
     
@@ -73,6 +80,7 @@ class PostViewController: UIViewController,UIImagePickerControllerDelegate,UINav
     
 
     func uploadImage(image: UIImage){
+        uploadCompleted = false
         let randomName = randomStringWithLength(length: 10)
         let imageData = UIImageJPEGRepresentation(image, 1.0)
         self.imageFileName = "\(randomName).jpg"
@@ -83,6 +91,7 @@ class PostViewController: UIViewController,UIImagePickerControllerDelegate,UINav
             if error == nil{
                 print("Sucessfully uploading image.")
                 self.imageFileName = "\(randomName).jpg"
+                uploadCompleted = true
             } else {
                 print("error uploading image:\(error?.localizedDescription)")
             }
@@ -117,14 +126,11 @@ class PostViewController: UIViewController,UIImagePickerControllerDelegate,UINav
             picker.dismiss(animated: true, completion: nil)
         }
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    
+    @IBAction func BackTapped(_ sender: AnyObject) {
+        self.navigationController?.popViewController(animated: true)
     }
-    */
+    
 
 }
