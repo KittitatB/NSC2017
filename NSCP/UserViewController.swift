@@ -44,8 +44,8 @@ class UserViewController: UIViewController,UICollectionViewDelegate,UICollection
     }
     
     func loadData(){
-        
-        Database.database().reference().child("posts").observeSingleEvent(of: .value, with: {
+        let uid = Auth.auth().currentUser?.uid
+        Database.database().reference().child("posts").queryOrdered(byChild: "uid").queryEqual(toValue: uid).observeSingleEvent(of: .value, with: {
             (DataSnapshot) in
             if let postsDictionary = DataSnapshot.value as? [String: AnyObject]{
                 for post in postsDictionary{
@@ -55,7 +55,6 @@ class UserViewController: UIViewController,UICollectionViewDelegate,UICollection
             }
         })
         
-        let uid = Auth.auth().currentUser?.uid
         Database.database().reference().child("photographer").queryOrdered(byChild: "uid").queryEqual(toValue: uid).observe(.childAdded, with: { (DataSnapshot) in
             let dict = DataSnapshot.value as! [String: AnyObject]
             self.userName.text = dict["username"] as? String
@@ -71,7 +70,24 @@ class UserViewController: UIViewController,UICollectionViewDelegate,UICollection
                         print("Error downloading image: \(error?.localizedDescription)")
                     }
                     
-                })
+                })/*
+                let url = URL(string: imageName)
+                URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
+                    if error != nil{
+                        print(error)
+                        return
+                    }
+                    
+                    let backgroundQueue = DispatchQueue(label: "com.Wave.NSCP",
+                                                        qos: .background,
+                                                        target: nil)
+                    
+                    backgroundQueue.async {
+                        self.userImage.image = UIImage(data: data!)
+
+                    }
+        
+                }).resume()*/
             }
             self.userImage.alpha = 0
             self.userImage.alpha = 0

@@ -87,6 +87,9 @@
 		4E7DBB0F1F5D1E1C00BBB634 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4EDB5ED41FA370940035106C /* PhotographerTableViewCell.swift */,
+				4E3298471FED5AFF000A9094 /* UserCollectionViewCell.swift */,
+				4E9718EB1FBA146700B6C507 /* ModelTableViewCell.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -108,12 +111,9 @@
 				4E9995121F4EAD5A0069E481 /* ViewController.swift */,
 				4E9995241F4EBCD50069E481 /* RegisterViewController.swift */,
 				4EB3BC521F9C9B6900A7E446 /* RegisShooterViewController.swift */,
-				4EDB5ED41FA370940035106C /* PhotographerTableViewCell.swift */,
 				4EDB5ED81FA373520035106C /* PhotographerViewController.swift */,
 				4EDB5EDA1FA600410035106C /* UserViewController.swift */,
-				4E9718EB1FBA146700B6C507 /* ModelTableViewCell.swift */,
 				4E9718ED1FBA14AF00B6C507 /* ModelTableViewController.swift */,
-				4E3298471FED5AFF000A9094 /* UserCollectionViewCell.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";

@@ -54,11 +54,13 @@ class RegisShooterViewController: UIViewController, UIImagePickerControllerDeleg
                                 Database.database().reference().child(type!).childByAutoId().setValue(postObject);
                             
                                 let alert = UIAlertController(title: "Success", message: "Your has been registed!", preferredStyle: .alert)
-                                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                                let postAction = UIAlertAction(title: "OK!", style: UIAlertActionStyle.default) { (action) in
+                                    let vc = self.storyboard?.instantiateViewController(withIdentifier: "LandingVC")
+                                    self.present(vc!, animated: true, completion: nil)
+                                }
+                                alert.addAction(postAction)
                                 self.present(alert, animated: true, completion: nil)
                                 print("Post to Firebase.")
-                                let vc = self.storyboard?.instantiateViewController(withIdentifier: "TabViewController")
-                                self.present(vc!, animated: true, completion: nil)
                             }
                         }
                     }
@@ -74,6 +76,7 @@ class RegisShooterViewController: UIViewController, UIImagePickerControllerDeleg
     @IBAction func selectImageTapped(_ sender: AnyObject) {
         let picker = UIImagePickerController()
         picker.delegate = self
+        picker.allowsEditing = true
         self.present(picker, animated: true, completion: nil)
     }
     

@@ -75,6 +75,7 @@ class PostViewController: UIViewController,UIImagePickerControllerDelegate,UINav
     @IBAction func selectImageTapped(_ sender: AnyObject) {
         let picker = UIImagePickerController()
         picker.delegate = self
+        picker.allowsEditing = true
         self.present(picker, animated: true, completion: nil)
     }
     
