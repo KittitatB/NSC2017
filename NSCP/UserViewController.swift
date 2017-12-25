@@ -123,8 +123,27 @@ class UserViewController: UIViewController,UICollectionViewDelegate,UICollection
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! UserCollectionViewCell
         
         // Use the outlet in our custom class to get a reference to the UILabel in the cell
-        cell.Pic.text = "1"
-        cell.backgroundColor = UIColor.cyan
+        let post = self.posts[indexPath.row] as! [String: AnyObject]
+        if let imageName = post["image"] as? String{
+            let imageRef = Storage.storage().reference().child("images/\(imageName)")
+            imageRef.getData(maxSize: 25*1024*1024, completion: {(data, error) -> Void in
+                if error == nil{
+                    let image = UIImage(data: data!)
+                    cell.image.image = image
+                }else {
+                    print("Error downloading image: \(error?.localizedDescription)")
+                }
+                
+            })
+        }
+        cell.image.alpha = 0
+        cell.image.alpha = 0
+        
+        UIView.animate(withDuration: 0.4, animations: {
+            cell.image.alpha = 1
+            cell.image.alpha = 1
+        })
+
         
         return cell
     }
