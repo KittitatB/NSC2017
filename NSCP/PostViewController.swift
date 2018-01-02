@@ -55,7 +55,10 @@ class PostViewController: UIViewController,UIImagePickerControllerDelegate,UINav
                                     Database.database().reference().child("posts").childByAutoId().setValue(postObject);
                                 
                                     let alert = UIAlertController(title: "Success", message: "Your post has been sent!", preferredStyle: .alert)
-                                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                                    let postAction = UIAlertAction(title: "OK!", style: UIAlertActionStyle.default) { (action) in
+                                       self.navigationController?.popViewController(animated: true)
+                                    }
+                                    alert.addAction(postAction)
                                     self.present(alert, animated: true, completion: nil)
                                     print("Post to Firebase.")
 

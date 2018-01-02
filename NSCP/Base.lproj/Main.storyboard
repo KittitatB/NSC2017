@@ -422,7 +422,7 @@
         <!--Post-->
         <scene sceneID="T7m-j3-wcD">
             <objects>
-                <viewController id="uPG-Vm-lYh" customClass="PostViewController" customModule="NSCP" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="uPG-Vm-lYh" customClass="ActivityPostViewController" customModule="NSCP" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Bsm-NY-wFG"/>
                         <viewControllerLayoutGuide type="bottom" id="QDQ-NK-69L"/>
@@ -449,8 +449,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9CV-kk-dgS">
-                                <frame key="frameInset" minX="154" minY="163" width="185" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9CV-kk-dgS">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="LEN-w6-cM6"/>
                                 </constraints>
@@ -512,7 +511,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <state key="normal" title="Post"/>
                                 <connections>
-                                    <action selector="postTapped:" destination="uPG-Vm-lYh" eventType="touchUpInside" id="GuE-x6-6P9"/>
+                                    <action selector="postDidTabbed:" destination="uPG-Vm-lYh" eventType="touchUpInside" id="gDW-sI-X9F"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -530,6 +529,7 @@
                             <constraint firstItem="BRt-bp-QUv" firstAttribute="top" secondItem="iaJ-2f-uX0" secondAttribute="bottom" constant="265" id="LjU-8j-TpD"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Grb-62-C4p" secondAttribute="trailing" constant="20" id="M4g-Ap-QId"/>
                             <constraint firstItem="BRt-bp-QUv" firstAttribute="centerX" secondItem="OHU-6d-VfB" secondAttribute="centerX" id="Q8q-nV-imb"/>
+                            <constraint firstItem="9CV-kk-dgS" firstAttribute="top" secondItem="SnJ-cs-ze8" secondAttribute="top" id="QIU-0H-Blh"/>
                             <constraint firstAttribute="trailingMargin" secondItem="9CV-kk-dgS" secondAttribute="trailing" constant="20" id="UaW-no-eG4"/>
                             <constraint firstItem="Grb-62-C4p" firstAttribute="top" secondItem="Bsm-NY-wFG" secondAttribute="bottom" constant="25" id="WAC-yp-Yhz"/>
                             <constraint firstItem="9As-Af-I4H" firstAttribute="top" secondItem="Grb-62-C4p" secondAttribute="bottom" constant="7" id="XcE-lo-HUd"/>
@@ -543,10 +543,10 @@
                     </view>
                     <navigationItem key="navigationItem" title="Post" id="DL1-HC-30R"/>
                     <connections>
-                        <outlet property="descriptionTextField" destination="iaJ-2f-uX0" id="6ZI-0u-xY8"/>
-                        <outlet property="linkTextField" destination="9CV-kk-dgS" id="fp9-Vy-Jkz"/>
-                        <outlet property="locationTextField" destination="9As-Af-I4H" id="vkE-Pj-2S0"/>
-                        <outlet property="modelTextField" destination="Grb-62-C4p" id="hwy-Im-eUY"/>
+                        <outlet property="des" destination="iaJ-2f-uX0" id="v9E-sB-OMM"/>
+                        <outlet property="header" destination="Grb-62-C4p" id="xoF-04-NJY"/>
+                        <outlet property="quantity" destination="9CV-kk-dgS" id="1xR-vt-U2H"/>
+                        <outlet property="type" destination="9As-Af-I4H" id="sij-JK-HFh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ghp-mN-ZyC" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -691,7 +691,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="rMI-rO-qmO" firstAttribute="leading" secondItem="eAg-M4-aGW" secondAttribute="leading" id="3WX-kt-kbY"/>
-                            <constraint firstItem="rMI-rO-qmO" firstAttribute="top" secondItem="eAg-M4-aGW" secondAttribute="top" id="7eY-T3-3xF"/>
+                            <constraint firstItem="rMI-rO-qmO" firstAttribute="top" secondItem="eAg-M4-aGW" secondAttribute="top" constant="64" id="7eY-T3-3xF"/>
                             <constraint firstItem="Jbh-kH-WlL" firstAttribute="top" secondItem="rMI-rO-qmO" secondAttribute="bottom" id="Jvg-4B-G0u"/>
                             <constraint firstAttribute="trailing" secondItem="rMI-rO-qmO" secondAttribute="trailing" id="hX9-dW-D3n"/>
                             <constraint firstItem="rMI-rO-qmO" firstAttribute="centerX" secondItem="eAg-M4-aGW" secondAttribute="centerX" id="zMH-Me-xHB"/>
@@ -704,7 +704,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yAu-32-WWO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4836" y="1459"/>
+            <point key="canvasLocation" x="4836" y="1458.6206896551726"/>
         </scene>
         <!--User View Controller-->
         <scene sceneID="h3U-TV-eZD">
@@ -876,7 +876,18 @@
                     <view key="view" contentMode="scaleToFill" id="63m-TU-vF0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6r0-xb-34K">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="6r0-xb-34K" firstAttribute="leading" secondItem="63m-TU-vF0" secondAttribute="leading" id="A3u-3B-2Wp"/>
+                            <constraint firstItem="6r0-xb-34K" firstAttribute="top" secondItem="u0m-kI-hxt" secondAttribute="bottom" id="Os8-aF-Cmd"/>
+                            <constraint firstAttribute="trailing" secondItem="6r0-xb-34K" secondAttribute="trailing" id="ovF-BC-RPa"/>
+                            <constraint firstItem="fZ5-xN-XQQ" firstAttribute="top" secondItem="6r0-xb-34K" secondAttribute="bottom" id="sCG-wf-j7J"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="yjM-Rx-Dic">
                         <barButtonItem key="rightBarButtonItem" title="Post" id="6TX-Ka-84h">
@@ -888,7 +899,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P9c-rc-XJM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7996" y="1459"/>
+            <point key="canvasLocation" x="7996" y="1458.6206896551726"/>
         </scene>
         <!--Setup Your Profile-->
         <scene sceneID="Yta-Ic-R42">
@@ -1191,7 +1202,7 @@
                             <constraint firstItem="wLt-RA-jbu" firstAttribute="centerX" secondItem="AAv-UC-ILc" secondAttribute="centerX" id="JJO-ia-bBi"/>
                             <constraint firstAttribute="trailing" secondItem="wLt-RA-jbu" secondAttribute="trailing" id="JaW-eV-jVx"/>
                             <constraint firstItem="wLt-RA-jbu" firstAttribute="leading" secondItem="AAv-UC-ILc" secondAttribute="leading" id="Yju-TE-eds"/>
-                            <constraint firstItem="wLt-RA-jbu" firstAttribute="top" secondItem="AAv-UC-ILc" secondAttribute="top" id="hdD-8n-zXs"/>
+                            <constraint firstItem="wLt-RA-jbu" firstAttribute="top" secondItem="AAv-UC-ILc" secondAttribute="top" constant="64" id="hdD-8n-zXs"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="1ft-Gw-xr3"/>
@@ -1201,7 +1212,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lbp-S9-eYc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6297" y="1459"/>
+            <point key="canvasLocation" x="6296.8000000000002" y="1458.6206896551726"/>
         </scene>
         <!--Location-->
         <scene sceneID="tOq-AS-0CD">

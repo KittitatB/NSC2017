@@ -16,7 +16,6 @@ class UserViewController: UIViewController,UICollectionViewDelegate,UICollection
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var userFacebookLink: UILabel!
     @IBOutlet weak var userInterest: UILabel!
-    
     @IBOutlet weak var collectionView: UICollectionView!
     
     
@@ -165,6 +164,10 @@ class UserViewController: UIViewController,UICollectionViewDelegate,UICollection
         return CGSize(width: widthPerItem, height: widthPerItem)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        posts.removeAllObjects()
+        loadData()
+    }
 
     
 }
