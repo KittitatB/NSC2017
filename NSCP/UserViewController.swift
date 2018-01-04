@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import FirebaseStorage
 
+
 class UserViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource {
     
     @IBOutlet weak var userImage: UIImageView!
@@ -17,8 +18,6 @@ class UserViewController: UIViewController,UICollectionViewDelegate,UICollection
     @IBOutlet weak var userFacebookLink: UILabel!
     @IBOutlet weak var userInterest: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
-    
-    
     var imageName = ""
     let reuseIdentifier = "collectionCell"
     var posts = NSMutableArray()
@@ -50,6 +49,7 @@ class UserViewController: UIViewController,UICollectionViewDelegate,UICollection
                 for post in postsDictionary{
                     self.posts.add(post.value)
                 }
+               
                 self.collectionView.reloadData()
             }
         })
@@ -123,17 +123,34 @@ class UserViewController: UIViewController,UICollectionViewDelegate,UICollection
         
         // Use the outlet in our custom class to get a reference to the UILabel in the cell
         let post = self.posts[indexPath.row] as! [String: AnyObject]
+        print("\(post["image"])");
         if let imageName = post["image"] as? String{
-            let imageRef = Storage.storage().reference().child("images/\(imageName)")
-            imageRef.getData(maxSize: 25*1024*1024, completion: {(data, error) -> Void in
-                if error == nil{
-                    let image = UIImage(data: data!)
-                    cell.image.image = image
-                }else {
-                    print("Error downloading image: \(error?.localizedDescription)")
+            
+            DispatchQueue.global(qos: .userInitiated).async { // 1
+                let imageRef = Storage.storage().reference().child("images/\(imageName)")
+                DispatchQueue.main.async { // 2
+                    imageRef.getData(maxSize: 25*1024*1024, completion: {(data, error) -> Void in
+                        if error == nil{
+                            let image = UIImage(data: data!)
+                            cell.image.image = image
+                        }else {
+                            print("Error downloading image: \(error?.localizedDescription)")
+                        }
+                        
+                    })
                 }
-                
-            })
+            }
+            
+//            let imageRef = Storage.storage().reference().child("images/\(imageName)")
+//            imageRef.getData(maxSize: 25*1024*1024, completion: {(data, error) -> Void in
+//                if error == nil{
+//                    let image = UIImage(data: data!)
+//                    cell.image.image = image
+//                }else {
+//                    print("Error downloading image: \(error?.localizedDescription)")
+//                }
+//                
+//            })
         }
         cell.image.alpha = 0
         cell.image.alpha = 0
@@ -164,9 +181,12 @@ class UserViewController: UIViewController,UICollectionViewDelegate,UICollection
         return CGSize(width: widthPerItem, height: widthPerItem)
     }
     
+    
+    
     override func viewWillAppear(_ animated: Bool) {
-        posts.removeAllObjects()
-        loadData()
+        self.collectionView.reloadData()
+//            posts.removeAllObjects()
+//            loadData()
     }
 
     
