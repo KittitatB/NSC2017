@@ -14,7 +14,7 @@ class PhotographerViewController: UIViewController, UITableViewDelegate, UITable
 
     var photographers = NSMutableArray()
     @IBOutlet weak var photographerTableView: UITableView!
-    
+    var userid = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,4 +84,17 @@ class PhotographerViewController: UIViewController, UITableViewDelegate, UITable
     }
     
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "ShooterUser"){
+            let NextViewController = segue.destination as! UserModelViewController
+            NextViewController.type = "photographer"
+            NextViewController.user = self.userid
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let photographer = photographers[indexPath.item] as! [String: AnyObject]
+        userid = (photographer["uid"] as? String)!
+        self.performSegue(withIdentifier: "ShooterUser", sender: self)
+    }
 }
