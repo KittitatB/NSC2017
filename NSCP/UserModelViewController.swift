@@ -165,6 +165,13 @@ class UserModelViewController: UIViewController,UICollectionViewDelegate,UIColle
         
     }
     
-    
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "Messenger"){
+            let NextViewController = segue.destination as! MessageViewController
+            NextViewController.user = self.user
+        }
+    }
+    @IBAction func showMessageController(_ sender: AnyObject) {
+        self.performSegue(withIdentifier: "Messenger", sender: self.user)
+    }
 }

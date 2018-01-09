@@ -600,7 +600,7 @@
                                         <rect key="frame" x="0.0" y="28" width="1000" height="457"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kfk-bC-KRd" id="G5G-ZQ-YSl">
-                                            <frame key="frameInset" width="1000" height="456.5"/>
+                                            <frame key="frameInset" width="1000" height="456"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R7k-DF-fNw" customClass="ViewWithBorder" customModule="NSCP" customModuleProvider="target">
@@ -882,10 +882,10 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="activitiesCell" rowHeight="200" id="YAb-ag-KAX" customClass="ActivitiesTableViewCell" customModule="NSCP" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="200"/>
+                                        <rect key="frame" x="0.0" y="28" width="1000" height="200"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YAb-ag-KAX" id="42C-jZ-MLd">
-                                            <frame key="frameInset" width="375" height="199.5"/>
+                                            <frame key="frameInset" width="1000" height="199"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A9q-pN-xGB" customClass="ViewWithBorder" customModule="NSCP" customModuleProvider="target">
@@ -1163,7 +1163,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="457"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="koR-VZ-gZa" id="HHP-cS-gxN">
-                                            <frame key="frameInset" width="375" height="456.5"/>
+                                            <frame key="frameInset" width="375" height="456"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kGy-g5-POy" customClass="ViewWithBorder" customModule="NSCP" customModuleProvider="target">
@@ -1502,7 +1502,7 @@
                     <navigationItem key="navigationItem" title="User" id="vSC-p7-5cN">
                         <barButtonItem key="rightBarButtonItem" title="Send" id="fku-om-Spm">
                             <connections>
-                                <segue destination="PBV-jQ-cff" kind="show" id="imr-iT-nu4"/>
+                                <action selector="showMessageController:" destination="uVZ-Yn-bUm" id="ejt-Z7-TSm"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -1514,6 +1514,7 @@
                         <outlet property="userImage" destination="cvr-EV-VVd" id="Kmq-BS-kMo"/>
                         <outlet property="userInterest" destination="SL2-dx-ae0" id="AkD-w0-vRM"/>
                         <outlet property="userName" destination="EOP-la-FPd" id="p9B-7V-5i6"/>
+                        <segue destination="PBV-jQ-cff" kind="show" identifier="Messenger" id="dig-Yl-mIq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gXp-bf-ANM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1557,26 +1558,38 @@
                                     <constraint firstAttribute="height" constant="1" id="OCW-WA-AQJ"/>
                                 </constraints>
                             </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3zw-Od-IFX">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="PBV-jQ-cff" id="yVd-SI-3K1"/>
+                                    <outlet property="delegate" destination="PBV-jQ-cff" id="H1c-nn-2mN"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="3zw-Od-IFX" secondAttribute="trailing" id="0mP-9z-Tqi"/>
+                            <constraint firstItem="3Ki-K3-AiR" firstAttribute="top" secondItem="3zw-Od-IFX" secondAttribute="bottom" id="0zl-st-ZPr"/>
                             <constraint firstItem="s3u-16-meN" firstAttribute="leading" secondItem="Yx7-Nz-G7w" secondAttribute="leading" constant="5" id="Bxp-yg-2Cc"/>
                             <constraint firstItem="Rf9-Ja-Fcp" firstAttribute="leading" secondItem="s3u-16-meN" secondAttribute="trailing" constant="5" id="DTK-wo-u1T"/>
                             <constraint firstItem="Rf9-Ja-Fcp" firstAttribute="top" secondItem="3Ki-K3-AiR" secondAttribute="bottom" constant="5" id="Jfk-l7-pKN"/>
                             <constraint firstAttribute="trailing" secondItem="3Ki-K3-AiR" secondAttribute="trailing" id="Kcz-bv-7Go"/>
                             <constraint firstAttribute="bottom" secondItem="Rf9-Ja-Fcp" secondAttribute="bottom" constant="5" id="Nrj-Rr-8mp"/>
+                            <constraint firstItem="3zw-Od-IFX" firstAttribute="leading" secondItem="Yx7-Nz-G7w" secondAttribute="leading" id="UA3-3F-sz1"/>
                             <constraint firstItem="3Ki-K3-AiR" firstAttribute="leading" secondItem="Yx7-Nz-G7w" secondAttribute="leading" id="Whm-n7-oWW"/>
+                            <constraint firstItem="3zw-Od-IFX" firstAttribute="top" secondItem="Td7-GJ-skU" secondAttribute="bottom" id="c1H-Ly-GIx"/>
                             <constraint firstAttribute="bottom" secondItem="s3u-16-meN" secondAttribute="bottom" constant="5" id="dIY-Kr-SUG"/>
                             <constraint firstAttribute="trailing" secondItem="Rf9-Ja-Fcp" secondAttribute="trailing" constant="5" id="hQu-xl-7Ta"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="messageTextfield" destination="s3u-16-meN" id="9Kc-Iu-a06"/>
+                        <outlet property="tableView" destination="3zw-Od-IFX" id="Vg2-05-RFh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kea-mI-ekW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5628" y="3151.5742128935535"/>
+            <point key="canvasLocation" x="6456.8000000000002" y="2410.344827586207"/>
         </scene>
     </scenes>
     <resources>
