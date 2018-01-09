@@ -13,6 +13,7 @@ import FirebaseStorage
 
 class UserModelViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource {
     
+    @IBOutlet weak var navigitionbar: UINavigationItem!
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var userFacebookLink: UILabel!
@@ -60,6 +61,7 @@ class UserModelViewController: UIViewController,UICollectionViewDelegate,UIColle
         
         Database.database().reference().child(type).queryOrdered(byChild: "uid").queryEqual(toValue: uid).observe(.childAdded, with: { (DataSnapshot) in
             let dict = DataSnapshot.value as! [String: AnyObject]
+            self.navigitionbar.title = dict["username"] as? String
             self.userName.text = dict["username"] as? String
             self.userFacebookLink.text = dict["link"] as? String
             self.userInterest.text = dict["location"] as? String
@@ -162,6 +164,7 @@ class UserModelViewController: UIViewController,UICollectionViewDelegate,UIColle
     override func viewWillAppear(_ animated: Bool) {
         
     }
+    
     
     
 }

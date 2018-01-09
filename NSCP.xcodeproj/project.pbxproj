@@ -14,6 +14,8 @@
 		4E32984E1FFB9224000A9094 /* ActivitiesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E32984D1FFB9224000A9094 /* ActivitiesTableViewCell.swift */; };
 		4E32987620024B2C000A9094 /* ChatLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E32987520024B2C000A9094 /* ChatLogViewController.swift */; };
 		4E32987820024E0B000A9094 /* UserModelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E32987720024E0B000A9094 /* UserModelViewController.swift */; };
+		4E32987A2004ABE4000A9094 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3298792004ABE4000A9094 /* MessageViewController.swift */; };
+		4E32987C2004B327000A9094 /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E32987B2004B327000A9094 /* MessageModel.swift */; };
 		4E7DBB0E1F5D1E1400BBB634 /* LoginTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7DBB0D1F5D1E1400BBB634 /* LoginTextField.swift */; };
 		4E9718EC1FBA146700B6C507 /* ModelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9718EB1FBA146700B6C507 /* ModelTableViewCell.swift */; };
 		4E9718EE1FBA14AF00B6C507 /* ModelTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9718ED1FBA14AF00B6C507 /* ModelTableViewController.swift */; };
@@ -41,6 +43,8 @@
 		4E32984D1FFB9224000A9094 /* ActivitiesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivitiesTableViewCell.swift; sourceTree = "<group>"; };
 		4E32987520024B2C000A9094 /* ChatLogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatLogViewController.swift; sourceTree = "<group>"; };
 		4E32987720024E0B000A9094 /* UserModelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModelViewController.swift; sourceTree = "<group>"; };
+		4E3298792004ABE4000A9094 /* MessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
+		4E32987B2004B327000A9094 /* MessageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageModel.swift; sourceTree = "<group>"; };
 		4E7DBB0D1F5D1E1400BBB634 /* LoginTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTextField.swift; sourceTree = "<group>"; };
 		4E9718EB1FBA146700B6C507 /* ModelTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelTableViewCell.swift; sourceTree = "<group>"; };
 		4E9718ED1FBA14AF00B6C507 /* ModelTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelTableViewController.swift; sourceTree = "<group>"; };
@@ -101,6 +105,7 @@
 				4E3298471FED5AFF000A9094 /* UserCollectionViewCell.swift */,
 				4E9718EB1FBA146700B6C507 /* ModelTableViewCell.swift */,
 				4E32984D1FFB9224000A9094 /* ActivitiesTableViewCell.swift */,
+				4E32987B2004B327000A9094 /* MessageModel.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -129,6 +134,7 @@
 				4E32984B1FFB834C000A9094 /* ActivityPostViewController.swift */,
 				4E32987520024B2C000A9094 /* ChatLogViewController.swift */,
 				4E32987720024E0B000A9094 /* UserModelViewController.swift */,
+				4E3298792004ABE4000A9094 /* MessageViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -324,7 +330,9 @@
 				4E9995131F4EAD5A0069E481 /* ViewController.swift in Sources */,
 				4E32984C1FFB834C000A9094 /* ActivityPostViewController.swift in Sources */,
 				4E9718EC1FBA146700B6C507 /* ModelTableViewCell.swift in Sources */,
+				4E32987A2004ABE4000A9094 /* MessageViewController.swift in Sources */,
 				4EDB5ED31FA36CD70035106C /* ViewWithBorder.swift in Sources */,
+				4E32987C2004B327000A9094 /* MessageModel.swift in Sources */,
 				4E9995111F4EAD5A0069E481 /* AppDelegate.swift in Sources */,
 				4E32987620024B2C000A9094 /* ChatLogViewController.swift in Sources */,
 				4EB3BC511F9C946E00A7E446 /* CircleImageView.swift in Sources */,

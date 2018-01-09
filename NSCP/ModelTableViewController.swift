@@ -13,6 +13,7 @@ import FirebaseStorage
 class ModelTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     var models = NSMutableArray()
+    var userid = ""
     @IBOutlet weak var modelTableView: UITableView!
     
     
@@ -23,11 +24,6 @@ class ModelTableViewController: UIViewController, UITableViewDelegate, UITableVi
         self.modelTableView.separatorStyle = .none
         loadData()
         
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
     override func didReceiveMemoryWarning() {
@@ -84,6 +80,21 @@ class ModelTableViewController: UIViewController, UITableViewDelegate, UITableVi
         })
         return cell
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "ShooterUser"){
+            let NextViewController = segue.destination as! UserModelViewController
+            NextViewController.type = "photographer"
+            NextViewController.user = self.userid
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let model = models[indexPath.item] as! [String: AnyObject]
+        userid = (model["uid"] as? String)!
+        self.performSegue(withIdentifier: "ShooterUser", sender: self)
+    }
+
     
     
 }

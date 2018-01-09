@@ -97,4 +97,10 @@ class PhotographerViewController: UIViewController, UITableViewDelegate, UITable
         userid = (photographer["uid"] as? String)!
         self.performSegue(withIdentifier: "ShooterUser", sender: self)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if let index = self.photographerTableView.indexPathForSelectedRow{
+            self.photographerTableView.deselectRow(at: index, animated: true)
+        }
+    }
 }
