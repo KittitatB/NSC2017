@@ -16,13 +16,47 @@ class UserMessageViewController: UIViewController, UITableViewDelegate, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.separatorStyle = .none
-        observerMessages()
+//        observerMessages()
+        observeUserMessage()
         }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func observeUserMessage(){
+        guard let uid = Auth.auth().currentUser?.uid else{
+            return
+        }
+        
+        DispatchQueue.global(qos: .background).async {
+            let ref = Database.database().reference().child("user-message").child(uid)
+            ref.observe(.childAdded
+                , with: { (DataSnapshot) in
+                    let messageId = DataSnapshot.key
+                    let MessagesRef = Database.database().reference().child("messages").child(messageId)
+                    MessagesRef.observeSingleEvent(of: .value, with: { (Data) in
+                        if let messagesDictionary = Data.value as? [String: AnyObject]{
+                            let message = Message()
+                            
+                            message.setValuesForKeys(Data.value as! [String : Any])
+                            if let toId = message.toId{
+                                self.messageDic[toId] = message
+                                self.messages = Array(self.messageDic.values)
+                                self.messages.sort(by: { (firstMessage, secoundMessage) -> Bool in
+                                    return (firstMessage.timestamp?.intValue)! > (secoundMessage.timestamp?.intValue)!
+                                })
+                            }
+                        }
+                    })
+                }, withCancel: nil)
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
     
     func observerMessages(){
         Database.database().reference().child("messages").observeSingleEvent(of: .value, with: {
@@ -68,7 +102,6 @@ class UserMessageViewController: UIViewController, UITableViewDelegate, UITableV
                         })
                     }
                 }
-                print(DataSnapshot)
                 }, withCancel: nil)
         }
         cell.detail?.textColor = cell.detailTextLabel?.textColor
@@ -83,6 +116,11 @@ class UserMessageViewController: UIViewController, UITableViewDelegate, UITableV
         }
 
         return cell
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+//        observerMessages()
+        observeUserMessage()
     }
 
 }

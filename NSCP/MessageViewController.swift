@@ -38,6 +38,11 @@ class MessageViewController: UIViewController, UITableViewDelegate, UITableViewD
         let timestamp = NSNumber(value: Int(NSDate().timeIntervalSince1970))
         let message: [String: Any] = ["text": messageTextfield.text!, "toId": toId!, "fromId": fromId!, "timestamp": timestamp]
         childRef.updateChildValues(message)
+        let userMessageRef = Database.database().reference().child("user-message").child(fromId!)
+        let messageId = childRef.key
+        userMessageRef.updateChildValues([messageId: 1])
+        let ReciverMessageRef = Database.database().reference().child("user-message").child(toId!)
+        ReciverMessageRef.updateChildValues([messageId: 1])
         messageTextfield.text = ""
         observerMessages()
     }
