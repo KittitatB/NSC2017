@@ -17,7 +17,7 @@ class UserMessageViewController: UIViewController, UITableViewDelegate, UITableV
         super.viewDidLoad()
         self.tableView.separatorStyle = .none
 //        observerMessages()
-        observeUserMessage()
+//        observeUserMessage()
         }
 
     override func didReceiveMemoryWarning() {
