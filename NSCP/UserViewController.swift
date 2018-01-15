@@ -20,7 +20,7 @@ class UserViewController: UIViewController,UICollectionViewDelegate,UICollection
     @IBOutlet weak var collectionView: UICollectionView!
     var imageName = ""
     let reuseIdentifier = "collectionCell"
-    var posts = NSMutableArray()
+    var posts = [Post]()
     let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0, right: 20.0)
     let itemsPerRow = 3
     
@@ -33,7 +33,6 @@ class UserViewController: UIViewController,UICollectionViewDelegate,UICollection
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 3
         collectionView!.collectionViewLayout = layout
-        loadData()
         }
 
     override func didReceiveMemoryWarning() {
@@ -46,10 +45,14 @@ class UserViewController: UIViewController,UICollectionViewDelegate,UICollection
         Database.database().reference().child("posts").queryOrdered(byChild: "uid").queryEqual(toValue: uid).observeSingleEvent(of: .value, with: {
             (DataSnapshot) in
             if let postsDictionary = DataSnapshot.value as? [String: AnyObject]{
-                for post in postsDictionary{
-                    self.posts.add(post.value)
+                for postIns in postsDictionary{
+                    let post = Post()
+                    post.setValuesForKeys(postIns.value as! [String : Any])
+                    self.posts.append(post)
                 }
-               
+                self.posts.sort(by: { (firstPost, secoundPost) -> Bool in
+                    return (firstPost.timestamp?.intValue)! > (secoundPost.timestamp?.intValue)!
+                })
                 self.collectionView.reloadData()
             }
         })
@@ -105,9 +108,8 @@ class UserViewController: UIViewController,UICollectionViewDelegate,UICollection
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! UserCollectionViewCell
         
         // Use the outlet in our custom class to get a reference to the UILabel in the cell
-        let post = self.posts[indexPath.row] as! [String: AnyObject]
-        print("\(post["image"])");
-        if let imageName = post["image"] as? String{
+        let post = self.posts[indexPath.row]
+        if let imageName = post.image{
             
             DispatchQueue.global(qos: .userInitiated).async { // 1
                 let imageRef = Storage.storage().reference().child("images/\(imageName)")
@@ -156,10 +158,8 @@ class UserViewController: UIViewController,UICollectionViewDelegate,UICollection
     
     
     override func viewWillAppear(_ animated: Bool) {
-        self.collectionView.reloadData()
-//            posts.removeAllObjects()
-//            loadData()
+        posts.removeAll()
+        loadData()
     }
-
     
 }

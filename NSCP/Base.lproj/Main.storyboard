@@ -606,7 +606,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="457"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kfk-bC-KRd" id="G5G-ZQ-YSl">
-                                            <frame key="frameInset" width="375" height="456"/>
+                                            <frame key="frameInset" width="375" height="456.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R7k-DF-fNw" customClass="ViewWithBorder" customModule="NSCP" customModuleProvider="target">
@@ -897,7 +897,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="200"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YAb-ag-KAX" id="42C-jZ-MLd">
-                                            <frame key="frameInset" width="375" height="199"/>
+                                            <frame key="frameInset" width="375" height="199.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A9q-pN-xGB" customClass="ViewWithBorder" customModule="NSCP" customModuleProvider="target">
@@ -1175,7 +1175,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="457"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="koR-VZ-gZa" id="HHP-cS-gxN">
-                                            <frame key="frameInset" width="375" height="456"/>
+                                            <frame key="frameInset" width="375" height="456.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kGy-g5-POy" customClass="ViewWithBorder" customModule="NSCP" customModuleProvider="target">
@@ -1281,7 +1281,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="modelTableView" destination="wLt-RA-jbu" id="hXA-Zr-Yg3"/>
-                        <segue destination="uVZ-Yn-bUm" kind="show" identifier="" id="dKF-vC-38b"/>
+                        <segue destination="uVZ-Yn-bUm" kind="show" identifier="ModelUser" id="dKF-vC-38b"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lbp-S9-eYc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1402,7 +1402,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YVd-h1-ZTm" id="Vvz-3y-FPL">
-                                            <frame key="frameInset" width="375" height="59"/>
+                                            <frame key="frameInset" width="375" height="59.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hCe-l1-tIY" customClass="CircleImageView" customModule="NSCP" customModuleProvider="target">
@@ -1717,7 +1717,7 @@
         <image name="loginCard" width="163" height="238"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="dKF-vC-38b"/>
         <segue reference="USe-qz-JeR"/>
-        <segue reference="3fQ-pP-nB7"/>
     </inferredMetricsTieBreakers>
 </document>

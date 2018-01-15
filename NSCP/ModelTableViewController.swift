@@ -82,9 +82,9 @@ class ModelTableViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "ShooterUser"){
+        if (segue.identifier == "ModelUser"){
             let NextViewController = segue.destination as! UserModelViewController
-            NextViewController.type = "photographer"
+            NextViewController.type = "model"
             NextViewController.user = self.userid
         }
     }
@@ -92,9 +92,16 @@ class ModelTableViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let model = models[indexPath.item] as! [String: AnyObject]
         userid = (model["uid"] as? String)!
-        self.performSegue(withIdentifier: "ShooterUser", sender: self)
+        self.performSegue(withIdentifier: "ModelUser", sender: self)
     }
 
-    
+    override func viewWillAppear(_ animated: Bool) {
+        if let index = self.modelTableView.indexPathForSelectedRow{
+            self.modelTableView.deselectRow(at: index, animated: true)
+        }
+    }
     
 }
+    
+    
+

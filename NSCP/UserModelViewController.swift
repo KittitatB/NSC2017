@@ -174,4 +174,6 @@ class UserModelViewController: UIViewController,UICollectionViewDelegate,UIColle
     @IBAction func showMessageController(_ sender: AnyObject) {
         self.performSegue(withIdentifier: "Messenger", sender: self.user)
     }
+    
+    
 }

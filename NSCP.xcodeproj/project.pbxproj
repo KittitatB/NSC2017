@@ -23,6 +23,7 @@
 		4E99951B1F4EAD5A0069E481 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E9995191F4EAD5A0069E481 /* LaunchScreen.storyboard */; };
 		4E9995231F4EADF40069E481 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4E9995221F4EADF40069E481 /* GoogleService-Info.plist */; };
 		4E9995251F4EBCD50069E481 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9995241F4EBCD50069E481 /* RegisterViewController.swift */; };
+		4EA18EC6200C9A5C00000D97 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA18EC5200C9A5C00000D97 /* Post.swift */; };
 		4EB3BC4D1F9352E800A7E446 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB3BC4C1F9352E800A7E446 /* PostViewController.swift */; };
 		4EB3BC511F9C946E00A7E446 /* CircleImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB3BC501F9C946E00A7E446 /* CircleImageView.swift */; };
 		4EB3BC531F9C9B6900A7E446 /* RegisShooterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB3BC521F9C9B6900A7E446 /* RegisShooterViewController.swift */; };
@@ -55,6 +56,7 @@
 		4E99951C1F4EAD5A0069E481 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4E9995221F4EADF40069E481 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4E9995241F4EBCD50069E481 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		4EA18EC5200C9A5C00000D97 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		4EB3BC4C1F9352E800A7E446 /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		4EB3BC4F1F93600600A7E446 /* NSCP.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NSCP.entitlements; sourceTree = "<group>"; };
 		4EB3BC501F9C946E00A7E446 /* CircleImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleImageView.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				4EE234B7200A1031007FCEE8 /* Message.swift */,
+				4EA18EC5200C9A5C00000D97 /* Post.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -331,6 +334,7 @@
 				4E32984A1FFB832B000A9094 /* ActivitiesViewController.swift in Sources */,
 				4EDB5ED91FA373520035106C /* PhotographerViewController.swift in Sources */,
 				4E9995131F4EAD5A0069E481 /* ViewController.swift in Sources */,
+				4EA18EC6200C9A5C00000D97 /* Post.swift in Sources */,
 				4E32984C1FFB834C000A9094 /* ActivityPostViewController.swift in Sources */,
 				4EE234B4200A0C75007FCEE8 /* UserMessageViewController.swift in Sources */,
 				4E9718EC1FBA146700B6C507 /* ModelTableViewCell.swift in Sources */,

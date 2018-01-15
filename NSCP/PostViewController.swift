@@ -43,14 +43,16 @@ class PostViewController: UIViewController,UIImagePickerControllerDelegate,UINav
                     if let location = locationTextField.text {
                         if let link = linkTextField.text {
                             if let description = descriptionTextField.text {
+                                    let timestamp = NSNumber(value: Int(NSDate().timeIntervalSince1970))
                                     let postObject = [
                                         "uid" : uid,
                                         "model" : model,
                                         "location" : location,
                                         "link" : link,
-                                        "description" : description,
-                                        "image" : imageFileName
-                                    ]
+                                        "descriptioner" : description,
+                                        "image" : imageFileName,
+                                        "timestamp" : timestamp
+                                    ] as [String : Any]
                                 
                                     Database.database().reference().child("posts").childByAutoId().setValue(postObject);
                                 
