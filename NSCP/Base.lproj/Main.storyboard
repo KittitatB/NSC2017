@@ -606,7 +606,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="457"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kfk-bC-KRd" id="G5G-ZQ-YSl">
-                                            <frame key="frameInset" width="375" height="456.5"/>
+                                            <frame key="frameInset" width="375" height="456"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R7k-DF-fNw" customClass="ViewWithBorder" customModule="NSCP" customModuleProvider="target">
@@ -897,7 +897,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="200"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YAb-ag-KAX" id="42C-jZ-MLd">
-                                            <frame key="frameInset" width="375" height="199.5"/>
+                                            <frame key="frameInset" width="375" height="199"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A9q-pN-xGB" customClass="ViewWithBorder" customModule="NSCP" customModuleProvider="target">
@@ -1175,7 +1175,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="457"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="koR-VZ-gZa" id="HHP-cS-gxN">
-                                            <frame key="frameInset" width="375" height="456.5"/>
+                                            <frame key="frameInset" width="375" height="456"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kGy-g5-POy" customClass="ViewWithBorder" customModule="NSCP" customModuleProvider="target">
@@ -1402,7 +1402,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YVd-h1-ZTm" id="Vvz-3y-FPL">
-                                            <frame key="frameInset" width="375" height="59.5"/>
+                                            <frame key="frameInset" width="375" height="59"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hCe-l1-tIY" customClass="CircleImageView" customModule="NSCP" customModuleProvider="target">
@@ -1474,6 +1474,7 @@
                     </view>
                     <connections>
                         <outlet property="tableView" destination="C5i-pG-6Dk" id="cZ0-iM-3u3"/>
+                        <segue destination="PBV-jQ-cff" kind="show" identifier="showUserChat" id="h8j-mk-tMz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M3N-HU-2VZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1673,38 +1674,54 @@
                                     <constraint firstAttribute="height" constant="1" id="OCW-WA-AQJ"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3zw-Od-IFX">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="0fe-NJ-6Yp">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="sQX-XT-AJ4">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MessageCell" id="mpN-oS-z63" customClass="MessageCollectionCell" customModule="NSCP" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
                                 <connections>
-                                    <outlet property="dataSource" destination="PBV-jQ-cff" id="yVd-SI-3K1"/>
-                                    <outlet property="delegate" destination="PBV-jQ-cff" id="H1c-nn-2mN"/>
+                                    <outlet property="dataSource" destination="PBV-jQ-cff" id="DUT-t7-JA2"/>
+                                    <outlet property="delegate" destination="PBV-jQ-cff" id="EYq-ew-j5S"/>
                                 </connections>
-                            </tableView>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="3zw-Od-IFX" secondAttribute="trailing" id="0mP-9z-Tqi"/>
-                            <constraint firstItem="3Ki-K3-AiR" firstAttribute="top" secondItem="3zw-Od-IFX" secondAttribute="bottom" id="0zl-st-ZPr"/>
                             <constraint firstItem="s3u-16-meN" firstAttribute="leading" secondItem="Yx7-Nz-G7w" secondAttribute="leading" constant="5" id="Bxp-yg-2Cc"/>
                             <constraint firstItem="Rf9-Ja-Fcp" firstAttribute="leading" secondItem="s3u-16-meN" secondAttribute="trailing" constant="5" id="DTK-wo-u1T"/>
+                            <constraint firstItem="3Ki-K3-AiR" firstAttribute="top" secondItem="0fe-NJ-6Yp" secondAttribute="bottom" id="F9G-T9-DVx"/>
                             <constraint firstItem="Rf9-Ja-Fcp" firstAttribute="top" secondItem="3Ki-K3-AiR" secondAttribute="bottom" constant="5" id="Jfk-l7-pKN"/>
                             <constraint firstAttribute="trailing" secondItem="3Ki-K3-AiR" secondAttribute="trailing" id="Kcz-bv-7Go"/>
                             <constraint firstAttribute="bottom" secondItem="Rf9-Ja-Fcp" secondAttribute="bottom" constant="5" id="Nrj-Rr-8mp"/>
-                            <constraint firstItem="3zw-Od-IFX" firstAttribute="leading" secondItem="Yx7-Nz-G7w" secondAttribute="leading" id="UA3-3F-sz1"/>
+                            <constraint firstItem="0fe-NJ-6Yp" firstAttribute="top" secondItem="Td7-GJ-skU" secondAttribute="bottom" id="VmL-cf-dCL"/>
                             <constraint firstItem="3Ki-K3-AiR" firstAttribute="leading" secondItem="Yx7-Nz-G7w" secondAttribute="leading" id="Whm-n7-oWW"/>
-                            <constraint firstItem="3zw-Od-IFX" firstAttribute="top" secondItem="Td7-GJ-skU" secondAttribute="bottom" id="c1H-Ly-GIx"/>
+                            <constraint firstItem="0fe-NJ-6Yp" firstAttribute="leading" secondItem="Yx7-Nz-G7w" secondAttribute="leading" id="cms-NY-KFM"/>
                             <constraint firstAttribute="bottom" secondItem="s3u-16-meN" secondAttribute="bottom" constant="5" id="dIY-Kr-SUG"/>
+                            <constraint firstAttribute="trailing" secondItem="0fe-NJ-6Yp" secondAttribute="trailing" id="dqX-u1-i3z"/>
                             <constraint firstAttribute="trailing" secondItem="Rf9-Ja-Fcp" secondAttribute="trailing" constant="5" id="hQu-xl-7Ta"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="collectionview" destination="0fe-NJ-6Yp" id="fqD-KA-uct"/>
                         <outlet property="messageTextfield" destination="s3u-16-meN" id="9Kc-Iu-a06"/>
-                        <outlet property="tableView" destination="3zw-Od-IFX" id="Vg2-05-RFh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kea-mI-ekW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6456.8000000000002" y="2410.344827586207"/>
+            <point key="canvasLocation" x="4924" y="3223.5382308845578"/>
         </scene>
     </scenes>
     <resources>
@@ -1719,5 +1736,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="dKF-vC-38b"/>
         <segue reference="USe-qz-JeR"/>
+        <segue reference="h8j-mk-tMz"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -8,19 +8,18 @@
 
 import UIKit
 import Firebase
-class MessageViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class MessageViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
     @IBOutlet weak var messageTextfield: UITextField!
-    @IBOutlet weak var tableView: UITableView!
-    
+
+    @IBOutlet weak var collectionview: UICollectionView!
     var user: String!
     var messages = NSMutableArray()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.separatorStyle = .none
-        print ("user " + user)
-        navigationItem.title = "Direct Message"
+        navigationItem.backBarButtonItem?.title = "DM"
+        loadUser()
         messageTextfield.placeholder = "Enter Message.."
         observerMessages()
     }
@@ -29,6 +28,13 @@ class MessageViewController: UIViewController, UITableViewDelegate, UITableViewD
         super.didReceiveMemoryWarning()
     }
     
+    func loadUser(){
+        
+        Database.database().reference().child("photographer").queryOrdered(byChild: "uid").queryEqual(toValue: user).observe(.childAdded, with: { (DataSnapshot) in
+            let dict = DataSnapshot.value as! [String: AnyObject]
+            self.navigationItem.title = dict["username"] as? String
+        })
+    }
     
     @IBAction func sendButtonTaped(_ sender: AnyObject) {
         let ref = Database.database().reference().child("messages")
@@ -56,26 +62,18 @@ class MessageViewController: UIViewController, UITableViewDelegate, UITableViewD
                     self.messages.add(message.value)
                 }
             }
-            self.tableView.reloadData()
+            self.collectionview.reloadData()
         })
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return messages.count
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 5
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "messageCellId")
-        let message = self.messages[indexPath.row] as! [String: AnyObject]
-        if let toId = message["toId"] as? String{
-             Database.database().reference().child("photographer").queryOrdered(byChild: "uid").queryEqual(toValue: toId).observe(.childAdded, with: { (DataSnapshot) in
-                if let dictionary = DataSnapshot.value as? [String: AnyObject]{
-                    cell.textLabel?.text = dictionary["username"] as? String
-                }
-                print(DataSnapshot)
-                }, withCancel: nil)
-        }
-        cell.detailTextLabel?.text = message["text"] as? String
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MessageCell", for: indexPath as IndexPath) as! MessageCollectionCell
         return cell
     }
+    
+   
 }

@@ -13,8 +13,10 @@ class UserMessageViewController: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet weak var tableView: UITableView!
     var messages = [Message()]
     var messageDic = [String: Message]()
+    var sendId: String?
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = "Direct Message"
         self.tableView.separatorStyle = .none
         //        observerMessages()
         observeUserMessage()
@@ -84,6 +86,17 @@ class UserMessageViewController: UIViewController, UITableViewDelegate, UITableV
         return messages.count
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let message = messages[indexPath.row]
+        if let chatPartnerId = message.chatPartnerId(){
+            self.sendId = chatPartnerId
+        }
+        else {
+            return
+        }
+        self.performSegue(withIdentifier: "showUserChat", sender: self.sendId)
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "UserCell", for: indexPath) as! UserCell
         let message = self.messages[indexPath.row]
@@ -114,6 +127,16 @@ class UserMessageViewController: UIViewController, UITableViewDelegate, UITableV
     override func viewDidAppear(_ animated: Bool) {
         //        observerMessages()
         observeUserMessage()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let backItem = UIBarButtonItem()
+        backItem.title = "DM"
+        navigationItem.backBarButtonItem = backItem
+        if (segue.identifier == "showUserChat"){
+            let NextViewController = segue.destination as! MessageViewController
+            NextViewController.user = self.sendId
+        }
     }
     
 }
