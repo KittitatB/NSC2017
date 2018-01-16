@@ -60,16 +60,7 @@ class ModelTableViewController: UIViewController, UITableViewDelegate, UITableVi
         let model = self.models[indexPath.row] as! [String: AnyObject]
         cell.modelName.text = model["username"] as? String
         if let imageName = model["image"] as? String{
-            let imageRef = Storage.storage().reference().child("userPic/\(imageName)")
-            imageRef.getData(maxSize: 25*1024*1024, completion: {(data, error) -> Void in
-                if error == nil{
-                    let image = UIImage(data: data!)
-                    cell.modelImage.image = image
-                }else {
-                    print("Error downloading image: \(error?.localizedDescription)")
-                }
-                
-            })
+            cell.modelImage.loadImageUsingCacheUsingImageName(imageName: imageName)
         }
         cell.modelImage.alpha = 0
         cell.modelImage.alpha = 0

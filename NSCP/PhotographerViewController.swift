@@ -62,16 +62,7 @@ class PhotographerViewController: UIViewController, UITableViewDelegate, UITable
         let photographer = self.photographers[indexPath.row] as! [String: AnyObject]
         cell.photographerName.text = photographer["username"] as? String
         if let imageName = photographer["image"] as? String{
-            let imageRef = Storage.storage().reference().child("userPic/\(imageName)")
-            imageRef.getData(maxSize: 25*1024*1024, completion: {(data, error) -> Void in
-                if error == nil{
-                    let image = UIImage(data: data!)
-                    cell.photographerImage.image = image
-                }else {
-                    print("Error downloading image: \(error?.localizedDescription)")
-                }
-                
-            })
+            cell.photographerImage.loadImageUsingCacheUsingImageName(imageName: imageName)
         }
         cell.photographerImage.alpha = 0
         cell.photographerImage.alpha = 0

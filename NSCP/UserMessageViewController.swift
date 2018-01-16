@@ -16,10 +16,10 @@ class UserMessageViewController: UIViewController, UITableViewDelegate, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.separatorStyle = .none
-//        observerMessages()
-//        observeUserMessage()
-        }
-
+        //        observerMessages()
+        observeUserMessage()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -29,8 +29,7 @@ class UserMessageViewController: UIViewController, UITableViewDelegate, UITableV
         guard let uid = Auth.auth().currentUser?.uid else{
             return
         }
-        
-        DispatchQueue.global(qos: .background).async {
+    
             let ref = Database.database().reference().child("user-message").child(uid)
             ref.observe(.childAdded
                 , with: { (DataSnapshot) in
@@ -40,7 +39,7 @@ class UserMessageViewController: UIViewController, UITableViewDelegate, UITableV
                         if let messagesDictionary = Data.value as? [String: AnyObject]{
                             let message = Message()
                             
-                            message.setValuesForKeys(Data.value as! [String : Any])
+                            message.setValuesForKeys(messagesDictionary)
                             if let toId = message.toId{
                                 self.messageDic[toId] = message
                                 self.messages = Array(self.messageDic.values)
@@ -48,13 +47,11 @@ class UserMessageViewController: UIViewController, UITableViewDelegate, UITableV
                                     return (firstMessage.timestamp?.intValue)! > (secoundMessage.timestamp?.intValue)!
                                 })
                             }
-                        }
+                    
+                            print(self.messages[0].timestamp)
+                            self.tableView.reloadData()}
                     })
                 }, withCancel: nil)
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
     }
     
     
@@ -74,7 +71,12 @@ class UserMessageViewController: UIViewController, UITableViewDelegate, UITableV
                     }
                 }
             }
-            self.tableView.reloadData()
+            DispatchQueue.global(qos: .background).async { // 1
+                
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
         })
     }
     
@@ -90,16 +92,7 @@ class UserMessageViewController: UIViewController, UITableViewDelegate, UITableV
                 if let dictionary = DataSnapshot.value as? [String: AnyObject]{
                     cell.title?.text = dictionary["username"] as? String
                     if let imageName = dictionary["image"] as? String{
-                        let imageRef = Storage.storage().reference().child("userPic/\(imageName)")
-                        imageRef.getData(maxSize: 25*1024*1024, completion: {(data, error) -> Void in
-                            if error == nil{
-                                let image = UIImage(data: data!)
-                                cell.userImage.image = image
-                            }else {
-                                print("Error downloading image: \(error?.localizedDescription)")
-                            }
-                            
-                        })
+                        cell.userImage.loadImageUsingCacheUsingImageName(imageName: imageName)
                     }
                 }
                 }, withCancel: nil)
@@ -114,13 +107,13 @@ class UserMessageViewController: UIViewController, UITableViewDelegate, UITableV
             dateformatter.dateFormat = "hh:mm:ss a"
             cell.timeLabel.text = dateformatter.string(from: timestampDate as Date)
         }
-
+        
         return cell
     }
     
     override func viewDidAppear(_ animated: Bool) {
-//        observerMessages()
+        //        observerMessages()
         observeUserMessage()
     }
-
+    
 }

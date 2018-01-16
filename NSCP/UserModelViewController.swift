@@ -66,16 +66,7 @@ class UserModelViewController: UIViewController,UICollectionViewDelegate,UIColle
             self.userFacebookLink.text = dict["link"] as? String
             self.userInterest.text = dict["location"] as? String
             if let imageName = dict["image"] as? String{
-                let imageRef = Storage.storage().reference().child("userPic/\(imageName)")
-                imageRef.getData(maxSize: 25*1024*1024, completion: {(data, error) -> Void in
-                    if error == nil{
-                        let image = UIImage(data: data!)
-                        self.userImage.image = image
-                    }else {
-                        print("Error downloading image: \(error?.localizedDescription)")
-                    }
-                    
-                })
+                self.userImage.loadImageUsingCacheUsingImageName(imageName: imageName)
             }
             self.userImage.alpha = 0
             self.userImage.alpha = 0
@@ -115,21 +106,7 @@ class UserModelViewController: UIViewController,UICollectionViewDelegate,UIColle
         print("\(post["image"])");
         if let imageName = post["image"] as? String{
             
-            DispatchQueue.global(qos: .userInitiated).async { // 1
-                let imageRef = Storage.storage().reference().child("images/\(imageName)")
-                DispatchQueue.main.async { // 2
-                    imageRef.getData(maxSize: 25*1024*1024, completion: {(data, error) -> Void in
-                        if error == nil{
-                            let image = UIImage(data: data!)
-                            cell.image.image = image
-                        }else {
-                            print("Error downloading image: \(error?.localizedDescription)")
-                        }
-                        
-                    })
-                }
-            }
-            
+            cell.image.loadImageUsingCacheUsingImageName(imageName: imageName)
         }
         cell.image.alpha = 0
         cell.image.alpha = 0
