@@ -15,9 +15,12 @@ class MessageViewController: UIViewController, UICollectionViewDelegate, UIColle
     @IBOutlet weak var collectionview: UICollectionView!
     var user: String?
     var messages = [Message]()
+    var bubbleWidthAnchor : NSLayoutConstraint?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        collectionview.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 0, right: 0)
+        collectionview.alwaysBounceVertical = true
         navigationItem.backBarButtonItem?.title = "DM"
         messageTextfield.placeholder = "Enter Message.."
     }
@@ -28,7 +31,7 @@ class MessageViewController: UIViewController, UICollectionViewDelegate, UIColle
     
     func loadUser(){
         
-        Database.database().reference().child("photographer").queryOrdered(byChild: "uid").queryEqual(toValue: user).observe(.childAdded, with: { (DataSnapshot) in
+        Database.database().reference().child("user").queryOrdered(byChild: "uid").queryEqual(toValue: user).observe(.childAdded, with: { (DataSnapshot) in
             let dict = DataSnapshot.value as! [String: AnyObject]
             self.user = dict["uid"] as? String
             self.navigationItem.title = dict["username"] as? String
@@ -53,7 +56,6 @@ class MessageViewController: UIViewController, UICollectionViewDelegate, UIColle
         let ReciverMessageRef = Database.database().reference().child("user-message").child(toId!)
         ReciverMessageRef.updateChildValues([messageId: 1])
         messageTextfield.text = ""
-        observerMessages()
     }
     
     func observerMessages(){
@@ -89,12 +91,31 @@ class MessageViewController: UIViewController, UICollectionViewDelegate, UIColle
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width, height: 80)
+        var height: CGFloat = 80
+        if let text = messages[indexPath.item].text{
+            height = estimateFrameForText(text: text).height + 15
+        }
+        
+        return CGSize(width: view.frame.width, height: height)
     }
+    
+    private func estimateFrameForText(text: String) -> CGRect {
+        let size = CGSize(width: 200, height: 1000)
+        let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
+        
+        return NSString(string: text).boundingRect(with: size, options: options, attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 16
+            )], context: nil)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MessageCell", for: indexPath as IndexPath) as! MessageCollectionCell
-            let message = messages[indexPath.item]
-            cell.textview.text = message.text
+        let message = messages[indexPath.item]
+        cell.bubbleview.translatesAutoresizingMaskIntoConstraints = false
+        cell.textview.translatesAutoresizingMaskIntoConstraints = false
+        cell.bubbleWidth.constant = estimateFrameForText(text: message.text!).width + 24
+        cell.bubbleview.layer.cornerRadius = 16
+        cell.bubbleview.layer.masksToBounds = true
+        cell.textview.text = message.text
         return cell
     }
     

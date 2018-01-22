@@ -18,7 +18,6 @@ class UserMessageViewController: UIViewController, UITableViewDelegate, UITableV
         super.viewDidLoad()
         navigationItem.title = "Direct Message"
         self.tableView.separatorStyle = .none
-        //        observerMessages()
         observeUserMessage()
     }
     
@@ -42,7 +41,7 @@ class UserMessageViewController: UIViewController, UITableViewDelegate, UITableV
                             let message = Message()
                             
                             message.setValuesForKeys(messagesDictionary)
-                            if let toId = message.toId{
+                            if let toId = message.chatPartnerId(){
                                 self.messageDic[toId] = message
                                 self.messages = Array(self.messageDic.values)
                                 self.messages.sort(by: { (firstMessage, secoundMessage) -> Bool in
@@ -78,7 +77,7 @@ class UserMessageViewController: UIViewController, UITableViewDelegate, UITableV
         let cell = tableView.dequeueReusableCell(withIdentifier: "UserCell", for: indexPath) as! UserCell
         let message = self.messages[indexPath.row]
         if let toId = message.chatPartnerId(){
-            Database.database().reference().child("photographer").queryOrdered(byChild: "uid").queryEqual(toValue: toId).observe(.childAdded, with: { (DataSnapshot) in
+            Database.database().reference().child("user").queryOrdered(byChild: "uid").queryEqual(toValue: toId).observe(.childAdded, with: { (DataSnapshot) in
                 if let dictionary = DataSnapshot.value as? [String: AnyObject]{
                     cell.title?.text = dictionary["username"] as? String
                     if let imageName = dictionary["image"] as? String{
@@ -102,7 +101,6 @@ class UserMessageViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        //        observerMessages()
         observeUserMessage()
     }
     

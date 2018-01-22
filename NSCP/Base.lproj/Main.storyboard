@@ -280,20 +280,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="r5H-BS-iVW">
-                                <frame key="frameInset" minX="155" minY="182" width="50" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="eLn-6r-J6r">
-                                        <frame key="frameInset" width="50" height="50"/>
-                                        <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="IjH-nQ-HI9">
-                                                <frame key="frameInset" width="50" height="50"/>
-                                            </stackView>
-                                        </subviews>
-                                    </stackView>
-                                </subviews>
-                            </stackView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fPC-hc-Xgc">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="znf-bn-qyJ"/>
@@ -1007,20 +993,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ewA-gd-rfF">
-                                <frame key="frameInset" minX="155" minY="182" width="50" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="UQL-d4-gyi">
-                                        <frame key="frameInset" width="50" height="50"/>
-                                        <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="nZ7-mH-K0R">
-                                                <frame key="frameInset" width="50" height="50"/>
-                                            </stackView>
-                                        </subviews>
-                                    </stackView>
-                                </subviews>
-                            </stackView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="m2M-NX-acA">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="xCY-zV-YNn"/>
@@ -1172,10 +1144,10 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="modelCell" rowHeight="457" id="koR-VZ-gZa" customClass="ModelTableViewCell" customModule="NSCP" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="457"/>
+                                        <rect key="frame" x="0.0" y="28" width="1000" height="457"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="koR-VZ-gZa" id="HHP-cS-gxN">
-                                            <frame key="frameInset" width="375" height="456"/>
+                                            <frame key="frameInset" width="1000" height="456"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kGy-g5-POy" customClass="ViewWithBorder" customModule="NSCP" customModuleProvider="target">
@@ -1690,23 +1662,34 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Bah Bah Bah" textAlignment="right" translatesAutoresizingMaskIntoConstraints="NO" id="dFP-ZL-cYM">
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iHd-g2-7m1">
+                                                    <subviews>
+                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Bah Bah Bah" translatesAutoresizingMaskIntoConstraints="NO" id="dFP-ZL-cYM">
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                        </textView>
+                                                    </subviews>
+                                                    <color key="backgroundColor" red="0.21960784310000001" green="0.60784313729999995" blue="0.72549019609999998" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="200" id="gkS-Ui-ueS"/>
+                                                        <constraint firstAttribute="width" constant="200" id="A0V-Mw-e56"/>
+                                                        <constraint firstItem="dFP-ZL-cYM" firstAttribute="height" secondItem="iHd-g2-7m1" secondAttribute="height" id="E4t-yA-bXQ"/>
+                                                        <constraint firstItem="dFP-ZL-cYM" firstAttribute="leading" secondItem="iHd-g2-7m1" secondAttribute="leading" constant="8" id="Rff-Kr-EBZ"/>
+                                                        <constraint firstItem="dFP-ZL-cYM" firstAttribute="top" secondItem="iHd-g2-7m1" secondAttribute="top" id="e23-ib-vYo"/>
+                                                        <constraint firstAttribute="trailing" secondItem="dFP-ZL-cYM" secondAttribute="trailing" id="has-gu-NIY"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                </textView>
+                                                </view>
                                             </subviews>
                                         </view>
                                         <constraints>
-                                            <constraint firstItem="dFP-ZL-cYM" firstAttribute="top" secondItem="mpN-oS-z63" secondAttribute="top" id="Esx-oh-6PX"/>
-                                            <constraint firstItem="dFP-ZL-cYM" firstAttribute="height" secondItem="mpN-oS-z63" secondAttribute="height" id="aWW-hm-9b8"/>
-                                            <constraint firstAttribute="trailing" secondItem="dFP-ZL-cYM" secondAttribute="trailing" id="izL-0M-zEl"/>
+                                            <constraint firstItem="iHd-g2-7m1" firstAttribute="height" secondItem="mpN-oS-z63" secondAttribute="height" id="GSf-Wv-Zgc"/>
+                                            <constraint firstItem="iHd-g2-7m1" firstAttribute="top" secondItem="mpN-oS-z63" secondAttribute="top" id="Ovr-yf-VSG"/>
+                                            <constraint firstAttribute="trailing" secondItem="iHd-g2-7m1" secondAttribute="trailing" constant="8" id="pv2-Vz-9M3"/>
                                         </constraints>
                                         <connections>
-                                            <outlet property="textview" destination="dFP-ZL-cYM" id="Ak8-9h-CMG"/>
+                                            <outlet property="bubbleWidth" destination="A0V-Mw-e56" id="P9V-Al-aYy"/>
+                                            <outlet property="bubbleview" destination="iHd-g2-7m1" id="eaL-sh-Gdk"/>
+                                            <outlet property="textview" destination="dFP-ZL-cYM" id="jQg-Db-aa0"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -1752,8 +1735,8 @@
         <image name="loginCard" width="163" height="238"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="dKF-vC-38b"/>
         <segue reference="USe-qz-JeR"/>
+        <segue reference="3fQ-pP-nB7"/>
         <segue reference="h8j-mk-tMz"/>
     </inferredMetricsTieBreakers>
 </document>

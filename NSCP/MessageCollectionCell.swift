@@ -9,5 +9,8 @@
 import UIKit
 
 class MessageCollectionCell: UICollectionViewCell {
+
+    @IBOutlet weak var bubbleview: UIView!
+    @IBOutlet weak var bubbleWidth: NSLayoutConstraint!
     @IBOutlet weak var textview: UITextView!
 }

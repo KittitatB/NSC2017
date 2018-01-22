@@ -45,7 +45,7 @@ class ActivityPostViewController: UIViewController {
                             
                             let alert = UIAlertController(title: "Success", message: "Your post has been sent!", preferredStyle: .alert)
                             let postAction = UIAlertAction(title: "OK!", style: UIAlertActionStyle.default) { (action) in
-                                self.navigationController?.popViewController(animated: true)
+                                _ = self.navigationController?.popViewController(animated: true)
                             }
                             alert.addAction(postAction)
                             self.present(alert, animated: true, completion: nil)

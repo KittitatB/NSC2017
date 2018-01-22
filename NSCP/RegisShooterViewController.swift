@@ -93,7 +93,7 @@ class RegisShooterViewController: UIViewController, UIImagePickerControllerDeleg
         self.imageFileName = "\(randomName).jpg"
         let uploadRef = Storage.storage().reference().child("userPic/\(randomName).jpg")
         
-        let uploadTask = uploadRef.putData(imageData!, metadata: nil){metadata,
+        uploadRef.putData(imageData!, metadata: nil){metadata,
             error in
             if error == nil{
                 print("Sucessfully uploading image.")
@@ -107,10 +107,10 @@ class RegisShooterViewController: UIViewController, UIImagePickerControllerDeleg
     
     func randomStringWithLength(length: Int) -> NSString{
         let chracters: NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-        var randomString: NSMutableString = NSMutableString(capacity: length)
-        for i in 0..<length{
-            var len = UInt32(chracters.length)
-            var rand = arc4random_uniform(len)
+        let randomString: NSMutableString = NSMutableString(capacity: length)
+        for _ in 0..<length{
+            let len = UInt32(chracters.length)
+            let rand = arc4random_uniform(len)
             randomString.appendFormat("%C", chracters.character(at: Int(rand)))
             
         }
