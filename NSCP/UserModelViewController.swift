@@ -59,7 +59,7 @@ class UserModelViewController: UIViewController,UICollectionViewDelegate,UIColle
             }
         })
         
-        Database.database().reference().child(type).queryOrdered(byChild: "uid").queryEqual(toValue: uid).observe(.childAdded, with: { (DataSnapshot) in
+        Database.database().reference().child("user").queryOrdered(byChild: "uid").queryEqual(toValue: uid).observe(.childAdded, with: { (DataSnapshot) in
             let dict = DataSnapshot.value as! [String: AnyObject]
             self.navigitionbar.title = dict["username"] as? String
             self.userName.text = dict["username"] as? String

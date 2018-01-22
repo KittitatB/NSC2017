@@ -9,5 +9,5 @@
 import UIKit
 
 class MessageCollectionCell: UICollectionViewCell {
-    
+    @IBOutlet weak var textview: UITextView!
 }

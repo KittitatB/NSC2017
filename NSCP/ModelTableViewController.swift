@@ -32,7 +32,7 @@ class ModelTableViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func loadData(){
-        Database.database().reference().child("model").observeSingleEvent(of: .value, with: {
+        Database.database().reference().child("user").queryOrdered(byChild: "type").queryEqual(toValue: "model").observeSingleEvent(of: .value, with: {
             (DataSnapshot) in
             if let modelsDictionary = DataSnapshot.value as? [String: AnyObject]{
                 for model in modelsDictionary{

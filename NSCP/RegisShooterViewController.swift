@@ -36,6 +36,10 @@ class RegisShooterViewController: UIViewController, UIImagePickerControllerDeleg
     
     
     @IBAction func postTapped(_ sender: AnyObject) {
+        guard (type != nil) else {
+            return
+        }
+        
         if(self.uploadCompleted){
             if let uid = Auth.auth().currentUser?.uid {
                 if let username = usernameTextField.text {
@@ -48,10 +52,11 @@ class RegisShooterViewController: UIViewController, UIImagePickerControllerDeleg
                                     "location" : interest,
                                     "link" : link,
                                     "description" : description,
-                                    "image" : imageFileName
+                                    "image" : imageFileName,
+                                    "type" : type!
                                 ]
                             
-                                Database.database().reference().child(type!).childByAutoId().setValue(postObject);
+                                Database.database().reference().child("user").childByAutoId().setValue(postObject);
                             
                                 let alert = UIAlertController(title: "Success", message: "Your has been registed!", preferredStyle: .alert)
                                 let postAction = UIAlertAction(title: "OK!", style: UIAlertActionStyle.default) { (action) in

@@ -50,39 +50,16 @@ class UserMessageViewController: UIViewController, UITableViewDelegate, UITableV
                                 })
                             }
                     
-                            print(self.messages[0].timestamp)
-                            self.tableView.reloadData()}
+                            DispatchQueue.main.async {
+                                    self.tableView.reloadData()
+                                }
+                            }
                     })
                 }, withCancel: nil)
     }
     
     
-    func observerMessages(){
-        Database.database().reference().child("messages").observeSingleEvent(of: .value, with: {
-            (DataSnapshot) in
-            if let messagesDictionary = DataSnapshot.value as? [String: AnyObject]{
-                for mess in messagesDictionary{
-                    let message = Message()
-                    message.setValuesForKeys(mess.value as! [String : Any])
-                    if let toId = message.toId{
-                        self.messageDic[toId] = message
-                        self.messages = Array(self.messageDic.values)
-                        self.messages.sort(by: { (firstMessage, secoundMessage) -> Bool in
-                            return (firstMessage.timestamp?.intValue)! > (secoundMessage.timestamp?.intValue)!
-                        })
-                    }
-                }
-            }
-            DispatchQueue.global(qos: .background).async { // 1
-                
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-            }
-        })
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+       func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return messages.count
     }
     
@@ -100,7 +77,7 @@ class UserMessageViewController: UIViewController, UITableViewDelegate, UITableV
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "UserCell", for: indexPath) as! UserCell
         let message = self.messages[indexPath.row]
-        if let toId = message.toId{
+        if let toId = message.chatPartnerId(){
             Database.database().reference().child("photographer").queryOrdered(byChild: "uid").queryEqual(toValue: toId).observe(.childAdded, with: { (DataSnapshot) in
                 if let dictionary = DataSnapshot.value as? [String: AnyObject]{
                     cell.title?.text = dictionary["username"] as? String

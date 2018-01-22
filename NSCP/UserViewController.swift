@@ -57,7 +57,7 @@ class UserViewController: UIViewController,UICollectionViewDelegate,UICollection
             }
         })
         
-        Database.database().reference().child("photographer").queryOrdered(byChild: "uid").queryEqual(toValue: uid).observe(.childAdded, with: { (DataSnapshot) in
+        Database.database().reference().child("user").queryOrdered(byChild: "uid").queryEqual(toValue: uid).observe(.childAdded, with: { (DataSnapshot) in
             let dict = DataSnapshot.value as! [String: AnyObject]
             self.userName.text = dict["username"] as? String
             self.userFacebookLink.text = dict["link"] as? String

@@ -34,7 +34,7 @@ class PhotographerViewController: UIViewController, UITableViewDelegate, UITable
     }
 
     func loadData(){
-        Database.database().reference().child("photographer").observeSingleEvent(of: .value, with: {
+        Database.database().reference().child("user").queryOrdered(byChild: "type").queryEqual(toValue: "photographer").observeSingleEvent(of: .value, with: {
             (DataSnapshot) in
             if let photographersDictionary = DataSnapshot.value as? [String: AnyObject]{
                 for photographer in photographersDictionary{
