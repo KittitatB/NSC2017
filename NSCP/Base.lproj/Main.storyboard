@@ -573,6 +573,71 @@
             </objects>
             <point key="canvasLocation" x="3524" y="1459"/>
         </scene>
+        <!--Shooter Filter Controller-->
+        <scene sceneID="NRM-DO-Bhv">
+            <objects>
+                <viewController storyboardIdentifier="ShooterFilter" id="umk-mT-QIe" customClass="ShooterFilterController" customModule="NSCP" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Xiz-wC-2zo"/>
+                        <viewControllerLayoutGuide type="bottom" id="E3m-Os-lXb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Xkq-Tp-Mv7">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cuF-sS-JnG">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Interest" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U6L-m9-gqf">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FK7-v8-akd">
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="77y-g1-1dr">
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="km5-Fq-Vay">
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <state key="normal" title="Filter"/>
+                                <connections>
+                                    <action selector="filter:" destination="umk-mT-QIe" eventType="touchUpInside" id="lFE-z5-fkf"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="FK7-v8-akd" firstAttribute="trailing" secondItem="77y-g1-1dr" secondAttribute="trailing" id="5Os-uJ-efY"/>
+                            <constraint firstItem="cuF-sS-JnG" firstAttribute="leading" secondItem="Xkq-Tp-Mv7" secondAttribute="leadingMargin" constant="20" id="5oI-IW-MGS"/>
+                            <constraint firstItem="FK7-v8-akd" firstAttribute="leading" secondItem="77y-g1-1dr" secondAttribute="leading" id="7sv-LX-Uwp"/>
+                            <constraint firstItem="77y-g1-1dr" firstAttribute="top" secondItem="FK7-v8-akd" secondAttribute="bottom" constant="21" id="DcV-zi-MtX"/>
+                            <constraint firstItem="U6L-m9-gqf" firstAttribute="centerY" secondItem="77y-g1-1dr" secondAttribute="centerY" id="IYG-Fs-c0h"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="FK7-v8-akd" secondAttribute="trailing" constant="20" id="QJf-c0-H36"/>
+                            <constraint firstItem="cuF-sS-JnG" firstAttribute="leading" secondItem="U6L-m9-gqf" secondAttribute="leading" id="RFU-qg-cL6"/>
+                            <constraint firstItem="E3m-Os-lXb" firstAttribute="top" secondItem="km5-Fq-Vay" secondAttribute="bottom" constant="63" id="ceA-EM-9ze"/>
+                            <constraint firstItem="77y-g1-1dr" firstAttribute="leading" secondItem="U6L-m9-gqf" secondAttribute="trailing" constant="16" id="gFd-hQ-Z9M"/>
+                            <constraint firstItem="km5-Fq-Vay" firstAttribute="centerX" secondItem="Xkq-Tp-Mv7" secondAttribute="centerX" id="kV5-Qt-THM"/>
+                            <constraint firstItem="cuF-sS-JnG" firstAttribute="centerY" secondItem="FK7-v8-akd" secondAttribute="centerY" id="rde-Wy-vsv"/>
+                            <constraint firstItem="FK7-v8-akd" firstAttribute="top" secondItem="Xiz-wC-2zo" secondAttribute="bottom" constant="61" id="vjc-So-4m4"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="interestFilter" destination="77y-g1-1dr" id="pcA-Uw-B1S"/>
+                        <outlet property="nameFilter" destination="FK7-v8-akd" id="ojn-0c-CBd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1Uv-nC-ud3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3472.8000000000002" y="2408.5457271364321"/>
+        </scene>
         <!--Photographer View Controller-->
         <scene sceneID="3cT-m2-9eD">
             <objects>
@@ -690,6 +755,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="aef-2J-o0f">
+                        <barButtonItem key="leftBarButtonItem" title="Filter" id="pwm-03-OjP">
+                            <connections>
+                                <segue destination="umk-mT-QIe" kind="show" id="9xs-9W-JZk"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="DM" id="yMF-We-MgH">
                             <connections>
                                 <segue destination="ybb-Dd-Enk" kind="show" id="USe-qz-JeR"/>
@@ -1245,6 +1315,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="1ft-Gw-xr3">
+                        <barButtonItem key="leftBarButtonItem" title="Filter" id="93r-9i-S3R">
+                            <connections>
+                                <segue destination="umk-mT-QIe" kind="show" id="ACq-0k-fAa"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="DM" id="g9a-l1-pb8">
                             <connections>
                                 <segue destination="ybb-Dd-Enk" kind="show" id="Fam-0V-0fr"/>
@@ -1755,8 +1830,9 @@
         <image name="loginCard" width="163" height="238"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="USe-qz-JeR"/>
-        <segue reference="3fQ-pP-nB7"/>
+        <segue reference="ACq-0k-fAa"/>
+        <segue reference="dKF-vC-38b"/>
+        <segue reference="Fam-0V-0fr"/>
         <segue reference="h8j-mk-tMz"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2D582A8B7709FD46B2576EF4 /* Pods_NSCP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE22FA5C72730EAC4C68E043 /* Pods_NSCP.framework */; };
+		4E22DAF32017C8C400B80233 /* ShooterFilterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E22DAF22017C8C400B80233 /* ShooterFilterController.swift */; };
 		4E3298481FED5AFF000A9094 /* UserCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3298471FED5AFF000A9094 /* UserCollectionViewCell.swift */; };
 		4E32984A1FFB832B000A9094 /* ActivitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3298491FFB832B000A9094 /* ActivitiesViewController.swift */; };
 		4E32984C1FFB834C000A9094 /* ActivityPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E32984B1FFB834C000A9094 /* ActivityPostViewController.swift */; };
@@ -41,6 +42,7 @@
 
 /* Begin PBXFileReference section */
 		47F279E16D223C5568129070 /* Pods-NSCP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NSCP.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NSCP/Pods-NSCP.debug.xcconfig"; sourceTree = "<group>"; };
+		4E22DAF22017C8C400B80233 /* ShooterFilterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShooterFilterController.swift; sourceTree = "<group>"; };
 		4E3298471FED5AFF000A9094 /* UserCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCollectionViewCell.swift; sourceTree = "<group>"; };
 		4E3298491FFB832B000A9094 /* ActivitiesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivitiesViewController.swift; sourceTree = "<group>"; };
 		4E32984B1FFB834C000A9094 /* ActivityPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityPostViewController.swift; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 				4E32984B1FFB834C000A9094 /* ActivityPostViewController.swift */,
 				4E32987720024E0B000A9094 /* UserModelViewController.swift */,
 				4EE234B3200A0C75007FCEE8 /* UserMessageViewController.swift */,
+				4E22DAF22017C8C400B80233 /* ShooterFilterController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -346,6 +349,7 @@
 				4E3298481FED5AFF000A9094 /* UserCollectionViewCell.swift in Sources */,
 				4E7DBB0E1F5D1E1400BBB634 /* LoginTextField.swift in Sources */,
 				4E32984A1FFB832B000A9094 /* ActivitiesViewController.swift in Sources */,
+				4E22DAF32017C8C400B80233 /* ShooterFilterController.swift in Sources */,
 				4EDB5ED91FA373520035106C /* PhotographerViewController.swift in Sources */,
 				4E9995131F4EAD5A0069E481 /* ViewController.swift in Sources */,
 				4EA18EC6200C9A5C00000D97 /* Post.swift in Sources */,

@@ -22,9 +22,8 @@ class PhotographerViewController: UIViewController, UITableViewDelegate, UITable
         self.photographerTableView.dataSource =  self
         self.photographerTableView.separatorStyle = .none
         loadData()
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+//        let FilterVC = storyboard?.instantiateViewController(withIdentifier: "ShooterFilter") as! ShooterFilterController
+//        FilterVC.delegate = self
 
     }
 
@@ -94,4 +93,17 @@ class PhotographerViewController: UIViewController, UITableViewDelegate, UITable
             self.photographerTableView.deselectRow(at: index, animated: true)
         }
     }
+    
+//    func filterByName(name: String?) {
+//        photographers.removeAllObjects()
+//        Database.database().reference().child("user").queryOrdered(byChild: "type").queryEqual(toValue: "photographer").queryOrdered(byChild: "username").queryEqual(toValue: name).observeSingleEvent(of: .value, with: {
+//            (DataSnapshot) in
+//            if let photographersDictionary = DataSnapshot.value as? [String: AnyObject]{
+//                for photographer in photographersDictionary{
+//                    self.photographers.add(photographer.value)
+//                }
+//                self.photographerTableView.reloadData()
+//            }
+//        })
+//    }
 }

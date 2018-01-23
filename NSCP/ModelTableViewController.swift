@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import FirebaseStorage
 
-class ModelTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ModelTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, FilterUserDelegate {
 
     var models = NSMutableArray()
     var userid = ""
@@ -23,6 +23,8 @@ class ModelTableViewController: UIViewController, UITableViewDelegate, UITableVi
         self.modelTableView.dataSource =  self
         self.modelTableView.separatorStyle = .none
         loadData()
+        let FilterVC = storyboard?.instantiateViewController(withIdentifier: "ShooterFilter") as! ShooterFilterController
+        FilterVC.delegate = self
         
     }
     
@@ -90,6 +92,20 @@ class ModelTableViewController: UIViewController, UITableViewDelegate, UITableVi
         if let index = self.modelTableView.indexPathForSelectedRow{
             self.modelTableView.deselectRow(at: index, animated: true)
         }
+    }
+    
+    func filterByName(name: String?) {
+        print("KUY")
+        models.removeAllObjects()
+        Database.database().reference().child("user").queryOrdered(byChild: "type").queryEqual(toValue: "model").queryOrdered(byChild: "username").queryEqual(toValue: name).observeSingleEvent(of: .value, with: {
+            (DataSnapshot) in
+            if let modelsDictionary = DataSnapshot.value as? [String: AnyObject]{
+                for model in modelsDictionary{
+                    self.models.add(model.value)
+                }
+                self.modelTableView.reloadData()
+            }
+        })
     }
     
 }
