@@ -80,6 +80,7 @@ class UserMessageViewController: UIViewController, UITableViewDelegate, UITableV
             Database.database().reference().child("user").queryOrdered(byChild: "uid").queryEqual(toValue: toId).observe(.childAdded, with: { (DataSnapshot) in
                 if let dictionary = DataSnapshot.value as? [String: AnyObject]{
                     cell.title?.text = dictionary["username"] as? String
+                    cell.userImage.image = nil
                     if let imageName = dictionary["image"] as? String{
                         cell.userImage.loadImageUsingCacheUsingImageName(imageName: imageName)
                     }

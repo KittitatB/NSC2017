@@ -14,12 +14,16 @@ class MessageViewController: UIViewController, UICollectionViewDelegate, UIColle
 
     @IBOutlet weak var collectionview: UICollectionView!
     var user: String?
+    var chatPartnerImage: String?
     var messages = [Message]()
     var bubbleWidthAnchor : NSLayoutConstraint?
+    var bubleRightAnchor : NSLayoutConstraint?
+    var bubbleLeftAnchor : NSLayoutConstraint?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionview.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 0, right: 0)
+        collectionview.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         collectionview.alwaysBounceVertical = true
         navigationItem.backBarButtonItem?.title = "DM"
         messageTextfield.placeholder = "Enter Message.."
@@ -34,6 +38,9 @@ class MessageViewController: UIViewController, UICollectionViewDelegate, UIColle
         Database.database().reference().child("user").queryOrdered(byChild: "uid").queryEqual(toValue: user).observe(.childAdded, with: { (DataSnapshot) in
             let dict = DataSnapshot.value as! [String: AnyObject]
             self.user = dict["uid"] as? String
+            if let imageName = dict["image"] as? String{
+                self.chatPartnerImage = imageName
+            }
             self.navigationItem.title = dict["username"] as? String
         })
         messages.removeAll()
@@ -93,7 +100,10 @@ class MessageViewController: UIViewController, UICollectionViewDelegate, UIColle
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         var height: CGFloat = 80
         if let text = messages[indexPath.item].text{
-            height = estimateFrameForText(text: text).height + 15
+            height = estimateFrameForText(text: text).height + 12
+            if height < 32{
+                height = 32
+            }
         }
         
         return CGSize(width: view.frame.width, height: height)
@@ -110,13 +120,39 @@ class MessageViewController: UIViewController, UICollectionViewDelegate, UIColle
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MessageCell", for: indexPath as IndexPath) as! MessageCollectionCell
         let message = messages[indexPath.item]
+        setupCell(cell: cell, Message: message)
         cell.bubbleview.translatesAutoresizingMaskIntoConstraints = false
         cell.textview.translatesAutoresizingMaskIntoConstraints = false
-        cell.bubbleWidth.constant = estimateFrameForText(text: message.text!).width + 24
+        cell.bubbleWidth.constant = (estimateFrameForText(text: message.text!).width + 20)
         cell.bubbleview.layer.cornerRadius = 16
         cell.bubbleview.layer.masksToBounds = true
         cell.textview.text = message.text
+        cell.textview.isEditable = false
+        cell.textview.isScrollEnabled = false
         return cell
+    }
+    
+    private func setupCell(cell: MessageCollectionCell, Message: Message){
+    
+        if Message.fromId == Auth.auth().currentUser?.uid{
+            cell.bubbleview.backgroundColor = UIColor.init(red: 56/255, green: 155/255, blue: 185/255, alpha:1)
+            cell.textview.textColor = UIColor.white
+            cell.chatImage.image = nil
+            cell.bubbleviewLeftAnchor.isActive = false
+            cell.bubbleviewRightAnchor.isActive = true
+            
+        }else{
+            cell.bubbleview.backgroundColor = UIColor.init(red: 230/255, green: 230/255, blue: 230/255, alpha:1)
+            cell.textview.textColor = UIColor.black
+            cell.chatImage.layer.borderWidth = 0
+            cell.chatImage.layer.masksToBounds = false
+            cell.chatImage.layer.cornerRadius = cell.frame.height/2
+            cell.chatImage.clipsToBounds = true
+            cell.chatImage.loadImageUsingCacheUsingImageName(imageName: self.chatPartnerImage!)
+            cell.bubbleviewRightAnchor.isActive = false
+            cell.bubbleviewLeftAnchor.isActive = true
+            
+        }
     }
     
    

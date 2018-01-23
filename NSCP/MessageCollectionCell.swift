@@ -9,7 +9,10 @@
 import UIKit
 
 class MessageCollectionCell: UICollectionViewCell {
-
+    
+    @IBOutlet weak var bubbleviewLeftAnchor: NSLayoutConstraint!
+    @IBOutlet weak var bubbleviewRightAnchor: NSLayoutConstraint!
+    @IBOutlet weak var chatImage: UIImageView!
     @IBOutlet weak var bubbleview: UIView!
     @IBOutlet weak var bubbleWidth: NSLayoutConstraint!
     @IBOutlet weak var textview: UITextView!

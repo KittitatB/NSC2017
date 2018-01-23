@@ -1144,10 +1144,10 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="modelCell" rowHeight="457" id="koR-VZ-gZa" customClass="ModelTableViewCell" customModule="NSCP" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="1000" height="457"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="457"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="koR-VZ-gZa" id="HHP-cS-gxN">
-                                            <frame key="frameInset" width="1000" height="456"/>
+                                            <frame key="frameInset" width="375" height="456"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kGy-g5-POy" customClass="ViewWithBorder" customModule="NSCP" customModuleProvider="target">
@@ -1662,9 +1662,11 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iHd-g2-7m1">
+                                                <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iHd-g2-7m1">
+                                                    <frame key="frameInset" minX="167" width="200" height="80"/>
                                                     <subviews>
-                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Bah Bah Bah" translatesAutoresizingMaskIntoConstraints="NO" id="dFP-ZL-cYM">
+                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" text="Bah Bah Bah" translatesAutoresizingMaskIntoConstraints="NO" id="dFP-ZL-cYM">
+                                                            <frame key="frameInset" minX="8" width="192" height="80"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -1679,16 +1681,34 @@
                                                         <constraint firstAttribute="trailing" secondItem="dFP-ZL-cYM" secondAttribute="trailing" id="has-gu-NIY"/>
                                                     </constraints>
                                                 </view>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aIa-uk-gtw">
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="32" id="FSU-aA-xZc"/>
+                                                        <constraint firstAttribute="width" constant="32" id="w2t-28-fas"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                         </view>
                                         <constraints>
                                             <constraint firstItem="iHd-g2-7m1" firstAttribute="height" secondItem="mpN-oS-z63" secondAttribute="height" id="GSf-Wv-Zgc"/>
                                             <constraint firstItem="iHd-g2-7m1" firstAttribute="top" secondItem="mpN-oS-z63" secondAttribute="top" id="Ovr-yf-VSG"/>
+                                            <constraint firstItem="aIa-uk-gtw" firstAttribute="leading" secondItem="mpN-oS-z63" secondAttribute="leading" constant="8" id="jMO-dm-m4d"/>
                                             <constraint firstAttribute="trailing" secondItem="iHd-g2-7m1" secondAttribute="trailing" constant="8" id="pv2-Vz-9M3"/>
+                                            <constraint firstAttribute="bottom" secondItem="aIa-uk-gtw" secondAttribute="bottom" id="rcH-oy-HZN"/>
+                                            <constraint firstItem="iHd-g2-7m1" firstAttribute="leading" secondItem="aIa-uk-gtw" secondAttribute="trailing" constant="8" id="uHS-1h-HgR"/>
                                         </constraints>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="pv2-Vz-9M3"/>
+                                                <exclude reference="uHS-1h-HgR"/>
+                                            </mask>
+                                        </variation>
                                         <connections>
                                             <outlet property="bubbleWidth" destination="A0V-Mw-e56" id="P9V-Al-aYy"/>
-                                            <outlet property="bubbleview" destination="iHd-g2-7m1" id="eaL-sh-Gdk"/>
+                                            <outlet property="bubbleview" destination="iHd-g2-7m1" id="vow-fY-czr"/>
+                                            <outlet property="bubbleviewLeftAnchor" destination="uHS-1h-HgR" id="v4A-GK-yHH"/>
+                                            <outlet property="bubbleviewRightAnchor" destination="pv2-Vz-9M3" id="6rc-7F-aIL"/>
+                                            <outlet property="chatImage" destination="aIa-uk-gtw" id="KAh-3u-I1S"/>
                                             <outlet property="textview" destination="dFP-ZL-cYM" id="jQg-Db-aa0"/>
                                         </connections>
                                     </collectionViewCell>
