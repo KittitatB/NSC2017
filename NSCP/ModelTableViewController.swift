@@ -23,8 +23,6 @@ class ModelTableViewController: UIViewController, UITableViewDelegate, UITableVi
         self.modelTableView.dataSource =  self
         self.modelTableView.separatorStyle = .none
         loadData()
-        let FilterVC = storyboard?.instantiateViewController(withIdentifier: "ShooterFilter") as! ShooterFilterController
-        FilterVC.delegate = self
         
     }
     
@@ -80,6 +78,11 @@ class ModelTableViewController: UIViewController, UITableViewDelegate, UITableVi
             NextViewController.type = "model"
             NextViewController.user = self.userid
         }
+        
+        if(segue.identifier == "FilterSegue"){
+            let NextViewController = segue.destination as! ShooterFilterController
+            NextViewController.delegate = self
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -95,17 +98,26 @@ class ModelTableViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func filterByName(name: String?) {
-        print("KUY")
         models.removeAllObjects()
-        Database.database().reference().child("user").queryOrdered(byChild: "type").queryEqual(toValue: "model").queryOrdered(byChild: "username").queryEqual(toValue: name).observeSingleEvent(of: .value, with: {
+        Database.database().reference().child("user").queryOrdered(byChild: "type").queryEqual(toValue: "model").observeSingleEvent(of: .value, with: {
             (DataSnapshot) in
             if let modelsDictionary = DataSnapshot.value as? [String: AnyObject]{
                 for model in modelsDictionary{
-                    self.models.add(model.value)
+                    let dict = model.value as! [String: AnyObject]
+                    if(dict["username"] as? String == name!){
+                        self.models.add(model.value)
+                    }
                 }
                 self.modelTableView.reloadData()
             }
         })
+    }
+    
+    
+    
+    @IBAction func filterDidPress(_ sender: AnyObject) {
+        performSegue(withIdentifier: "FilterSegue", sender: self)
+        
     }
     
 }

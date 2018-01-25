@@ -657,7 +657,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="457"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kfk-bC-KRd" id="G5G-ZQ-YSl">
-                                            <frame key="frameInset" width="375" height="456"/>
+                                            <frame key="frameInset" width="375" height="456.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R7k-DF-fNw" customClass="ViewWithBorder" customModule="NSCP" customModuleProvider="target">
@@ -755,11 +755,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="aef-2J-o0f">
-                        <barButtonItem key="leftBarButtonItem" title="Filter" id="pwm-03-OjP">
-                            <connections>
-                                <segue destination="umk-mT-QIe" kind="show" id="9xs-9W-JZk"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="leftBarButtonItem" title="Filter" id="pwm-03-OjP"/>
                         <barButtonItem key="rightBarButtonItem" title="DM" id="yMF-We-MgH">
                             <connections>
                                 <segue destination="ybb-Dd-Enk" kind="show" id="USe-qz-JeR"/>
@@ -953,7 +949,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="200"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YAb-ag-KAX" id="42C-jZ-MLd">
-                                            <frame key="frameInset" width="375" height="199"/>
+                                            <frame key="frameInset" width="375" height="199.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A9q-pN-xGB" customClass="ViewWithBorder" customModule="NSCP" customModuleProvider="target">
@@ -1217,7 +1213,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="457"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="koR-VZ-gZa" id="HHP-cS-gxN">
-                                            <frame key="frameInset" width="375" height="456"/>
+                                            <frame key="frameInset" width="375" height="456.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kGy-g5-POy" customClass="ViewWithBorder" customModule="NSCP" customModuleProvider="target">
@@ -1317,7 +1313,7 @@
                     <navigationItem key="navigationItem" id="1ft-Gw-xr3">
                         <barButtonItem key="leftBarButtonItem" title="Filter" id="93r-9i-S3R">
                             <connections>
-                                <segue destination="umk-mT-QIe" kind="show" id="ACq-0k-fAa"/>
+                                <action selector="filterDidPress:" destination="bg8-xF-Se1" id="KiB-Aa-SP1"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="DM" id="g9a-l1-pb8">
@@ -1329,6 +1325,7 @@
                     <connections>
                         <outlet property="modelTableView" destination="wLt-RA-jbu" id="hXA-Zr-Yg3"/>
                         <segue destination="uVZ-Yn-bUm" kind="show" identifier="ModelUser" id="dKF-vC-38b"/>
+                        <segue destination="umk-mT-QIe" kind="show" identifier="FilterSegue" id="0pB-wG-jkq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lbp-S9-eYc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1449,7 +1446,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YVd-h1-ZTm" id="Vvz-3y-FPL">
-                                            <frame key="frameInset" width="375" height="59"/>
+                                            <frame key="frameInset" width="375" height="59.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hCe-l1-tIY" customClass="CircleImageView" customModule="NSCP" customModuleProvider="target">
@@ -1830,9 +1827,8 @@
         <image name="loginCard" width="163" height="238"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ACq-0k-fAa"/>
-        <segue reference="dKF-vC-38b"/>
-        <segue reference="Fam-0V-0fr"/>
         <segue reference="h8j-mk-tMz"/>
+        <segue reference="Fam-0V-0fr"/>
+        <segue reference="dKF-vC-38b"/>
     </inferredMetricsTieBreakers>
 </document>
