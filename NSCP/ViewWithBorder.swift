@@ -13,6 +13,10 @@ class ViewWithBorder: UIView {
     override func layoutSubviews() {
         self.layer.borderWidth = 1
         self.layer.borderColor = UIColor.init(red:222/255.0, green:225/255.0, blue:227/255.0, alpha: 1.0).cgColor
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowOpacity = 0.5
+        self.layer.shadowOffset = CGSize.zero
+        self.layer.shadowRadius = 7
     }
 
 }

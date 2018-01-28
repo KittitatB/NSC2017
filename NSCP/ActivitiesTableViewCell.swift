@@ -11,6 +11,12 @@ import UIKit
 class ActivitiesTableViewCell: UITableViewCell {
 
     @IBOutlet weak var header: UILabel!
+    @IBOutlet weak var OwnerImage: CircleImageView!
+    @IBOutlet weak var type: UILabel!
+    @IBOutlet weak var detail: UITextView!
+    @IBOutlet weak var quantity: UILabel!
+    @IBOutlet weak var joined: UILabel!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()

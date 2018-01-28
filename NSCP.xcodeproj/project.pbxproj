@@ -27,6 +27,7 @@
 		4EA18EC6200C9A5C00000D97 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA18EC5200C9A5C00000D97 /* Post.swift */; };
 		4EA18EC9200DFAED00000D97 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA18EC8200DFAED00000D97 /* Extensions.swift */; };
 		4EA18ECB200E138A00000D97 /* MessageCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA18ECA200E138A00000D97 /* MessageCollectionCell.swift */; };
+		4EA46C2C201C9B5200B21A15 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA46C2B201C9B5200B21A15 /* Activity.swift */; };
 		4EB3BC4D1F9352E800A7E446 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB3BC4C1F9352E800A7E446 /* PostViewController.swift */; };
 		4EB3BC511F9C946E00A7E446 /* CircleImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB3BC501F9C946E00A7E446 /* CircleImageView.swift */; };
 		4EB3BC531F9C9B6900A7E446 /* RegisShooterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB3BC521F9C9B6900A7E446 /* RegisShooterViewController.swift */; };
@@ -63,6 +64,7 @@
 		4EA18EC5200C9A5C00000D97 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		4EA18EC8200DFAED00000D97 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		4EA18ECA200E138A00000D97 /* MessageCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCollectionCell.swift; sourceTree = "<group>"; };
+		4EA46C2B201C9B5200B21A15 /* Activity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		4EB3BC4C1F9352E800A7E446 /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		4EB3BC4F1F93600600A7E446 /* NSCP.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NSCP.entitlements; sourceTree = "<group>"; };
 		4EB3BC501F9C946E00A7E446 /* CircleImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleImageView.swift; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 			children = (
 				4EE234B7200A1031007FCEE8 /* Message.swift */,
 				4EA18EC5200C9A5C00000D97 /* Post.swift */,
+				4EA46C2B201C9B5200B21A15 /* Activity.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -363,6 +366,7 @@
 				4EA18EC9200DFAED00000D97 /* Extensions.swift in Sources */,
 				4E9995111F4EAD5A0069E481 /* AppDelegate.swift in Sources */,
 				4EB3BC511F9C946E00A7E446 /* CircleImageView.swift in Sources */,
+				4EA46C2C201C9B5200B21A15 /* Activity.swift in Sources */,
 				4EB3BC4D1F9352E800A7E446 /* PostViewController.swift in Sources */,
 				4EE234B6200A0FE0007FCEE8 /* UserCell.swift in Sources */,
 			);

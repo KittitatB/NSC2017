@@ -14,23 +14,30 @@ class ActivitiesViewController: UIViewController,UITableViewDelegate, UITableVie
     
     @IBOutlet weak var tableview: UITableView!
     
-    var activities = NSMutableArray()
+    var activities = [Activity]()
     override func viewDidLoad() {
         super.viewDidLoad()
         tableview.dataSource = self
         tableview.delegate = self
         tableview.separatorStyle = .none
-        loadData()
     }
 
     func loadData(){
+        activities.removeAll()
         Database.database().reference().child("activities").observeSingleEvent(of: .value, with: {
             (DataSnapshot) in
             if let activitiesDictionary = DataSnapshot.value as? [String: AnyObject]{
-                for activity in activitiesDictionary{
-                    self.activities.add(activity.value)
+                for activityDic in activitiesDictionary{
+                    let activity = Activity()
+                    activity.setValuesForKeys(activityDic.value as! [String : Any])
+                    self.activities.append(activity)
+                    self.activities.sort(by: { (first, secound) -> Bool in
+                        return (first.timestamp?.intValue)! > (secound.timestamp?.intValue)!
+                    })
                 }
-                self.tableview.reloadData()
+                DispatchQueue.main.async {
+                    self.tableview.reloadData()
+                }
             }
         })
     }
@@ -53,30 +60,22 @@ class ActivitiesViewController: UIViewController,UITableViewDelegate, UITableVie
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "activitiesCell", for: indexPath) as!ActivitiesTableViewCell
         // Configure the cell...
-        let activity = self.activities[indexPath.row] as! [String: AnyObject]
-        cell.header.text = activity["header"] as? String
-        /*if let imageName = photographer["image"] as? String{
-            let imageRef = Storage.storage().reference().child("userPic/\(imageName)")
-            imageRef.getData(maxSize: 25*1024*1024, completion: {(data, error) -> Void in
-                if error == nil{
-                    let image = UIImage(data: data!)
-                    cell.photographerImage.image = image
-                }else {
-                    print("Error downloading image: \(error?.localizedDescription)")
-                }
-                
-            })
-        }
-        cell.photographerImage.alpha = 0
-        cell.photographerImage.alpha = 0
-        
-        UIView.animate(withDuration: 0.4, animations: {
-            cell.photographerImage.alpha = 1
-            cell.photographerImage.alpha = 1
-        })*/
+        let activity = self.activities[indexPath.row]
+        cell.header.text = activity.header
+        cell.type.text = activity.type
+        cell.detail.text = activity.descriptioner
+        cell.quantity.text = activity.quantity?.stringValue
+        Database.database().reference().child("user").queryOrdered(byChild: "uid").queryEqual(toValue: activity.uid).observe(.childAdded, with: { (DataSnapshot) in
+            let dict = DataSnapshot.value as! [String: AnyObject]
+            if let imageName = dict["image"] as? String{
+                cell.OwnerImage?.loadImageUsingCacheUsingImageName(imageName: imageName)
+            }
+        })
         return cell
     }
 
-    
-
+    override func viewWillAppear(_ animated: Bool) {
+        activities.removeAll()
+        loadData()
+    }
 }
