@@ -26,7 +26,31 @@ class LocationViewController: UIViewController,UITableViewDataSource,UITableView
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LocationCell", for: indexPath as IndexPath) as! LocationTableViewCell
-        cell.locationName.text = locations[indexPath.item]
+        let location = locations[indexPath.item]
+        cell.locationName.text = location
+        Database.database().reference().child("posts").queryOrdered(byChild: "location").queryEqual(toValue: location).observeSingleEvent(of: .value, with: {
+            (DataSnapshot) in
+            var locationImage = [String]()
+            if let postsDictionary = DataSnapshot.value as? [String: AnyObject]{
+                for postDic in postsDictionary{
+                    let post = Post()
+                    post.setValuesForKeys((postDic.value as? [String: Any])!)
+                    locationImage.append(post.image!)
+                }
+                if(locationImage.count > 0){
+                    cell.image1.loadPostImageUsingCacheUsingImageName(imageName: locationImage[0])
+                }
+                if(locationImage.count > 1){
+                    cell.image2.loadPostImageUsingCacheUsingImageName(imageName: locationImage[1])
+                }
+                if(locationImage.count > 2){
+                    cell.image3.loadPostImageUsingCacheUsingImageName(imageName: locationImage[2])
+                }
+                if(locationImage.count > 3){
+                    cell.image4.loadPostImageUsingCacheUsingImageName(imageName: locationImage[3])
+                }
+            }
+        })
         return cell
     }
     
