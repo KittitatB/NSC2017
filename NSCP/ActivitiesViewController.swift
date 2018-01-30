@@ -15,6 +15,8 @@ class ActivitiesViewController: UIViewController,UITableViewDelegate, UITableVie
     @IBOutlet weak var tableview: UITableView!
     
     var activities = [Activity]()
+    var sendActivity = Activity()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableview.dataSource = self
@@ -77,5 +79,17 @@ class ActivitiesViewController: UIViewController,UITableViewDelegate, UITableVie
     override func viewWillAppear(_ animated: Bool) {
         activities.removeAll()
         loadData()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "showActivity"){
+            let NextViewController = segue.destination as! ShowActivityViewController
+            NextViewController.activity = sendActivity
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        sendActivity = activities[indexPath.item]
+        self.performSegue(withIdentifier: "showActivity", sender: self)
     }
 }
