@@ -106,7 +106,7 @@ class UserModelViewController: UIViewController,UICollectionViewDelegate,UIColle
         print("\(post["image"])");
         if let imageName = post["image"] as? String{
             
-            cell.image.loadImageUsingCacheUsingImageName(imageName: imageName)
+            cell.image.loadPostImageUsingCacheUsingImageName(imageName: imageName)
         }
         cell.image.alpha = 0
         cell.image.alpha = 0

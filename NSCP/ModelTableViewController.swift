@@ -15,6 +15,7 @@ class ModelTableViewController: UIViewController, UITableViewDelegate, UITableVi
     var models = NSMutableArray()
     var userid = ""
     @IBOutlet weak var modelTableView: UITableView!
+    var posts = [Post]()
     
     
     override func viewDidLoad() {
@@ -62,12 +63,42 @@ class ModelTableViewController: UIViewController, UITableViewDelegate, UITableVi
         if let imageName = model["image"] as? String{
             cell.modelImage.loadImageUsingCacheUsingImageName(imageName: imageName)
         }
+        let uid = model["uid"] as? String
+        Database.database().reference().child("posts").queryOrdered(byChild: "uid").queryEqual(toValue: uid).observeSingleEvent(of: .value, with: {
+            (DataSnapshot) in
+            if let postsDictionary = DataSnapshot.value as? [String: AnyObject]{
+                for postIns in postsDictionary{
+                        let post = Post()
+                        post.setValuesForKeys(postIns.value as! [String : Any])
+                        self.posts.append(post)
+                }
+            }
+            if(self.posts.count > 0){
+                print(self.posts[0])
+                cell.randomPic1.loadPostImageUsingCacheUsingImageName(imageName: self.posts[0].image!)
+            }
+            if(self.posts.count > 1){
+                print(self.posts[0])
+                cell.randomPic2.loadPostImageUsingCacheUsingImageName(imageName: self.posts[1].image!)
+            }
+            if(self.posts.count > 2){
+                print(self.posts[0])
+                cell.randomPic3.loadPostImageUsingCacheUsingImageName(imageName: self.posts[2].image!)
+            }
+            
+        })
         cell.modelImage.alpha = 0
         cell.modelImage.alpha = 0
+        cell.randomPic1.alpha = 0
+        cell.randomPic2.alpha = 0
+        cell.randomPic3.alpha = 0
         
         UIView.animate(withDuration: 0.4, animations: {
             cell.modelImage.alpha = 1
             cell.modelImage.alpha = 1
+            cell.randomPic1.alpha = 1
+            cell.randomPic2.alpha = 1
+            cell.randomPic3.alpha = 1
         })
         return cell
     }
