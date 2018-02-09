@@ -21,6 +21,7 @@ class RegisterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround() 
         let attributedString = NSAttributedString(string: "Already Have An Account?", attributes: [NSForegroundColorAttributeName:UIColor.white, NSUnderlineStyleAttributeName:1])
         alrdy.setAttributedTitle(attributedString, for: .normal)
         typeAction = UIAlertController(title: "Choose Your Type", message: "Are You Photographer or model?", preferredStyle: UIAlertControllerStyle.actionSheet)

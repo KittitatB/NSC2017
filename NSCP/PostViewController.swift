@@ -26,7 +26,7 @@ class PostViewController: UIViewController,UIImagePickerControllerDelegate,UINav
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.hideKeyboardWhenTappedAround() 
         // Do any additional setup after loading the view.
     }
 

@@ -10,20 +10,18 @@ import UIKit
 import Firebase
 import FirebaseStorage
 
-class PhotographerViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class PhotographerViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, FilterUserDelegate {
 
     var photographers = NSMutableArray()
     @IBOutlet weak var photographerTableView: UITableView!
     var userid = ""
-    
+    var posts = [Post]()
     override func viewDidLoad() {
         super.viewDidLoad()
         self.photographerTableView.delegate = self
         self.photographerTableView.dataSource =  self
         self.photographerTableView.separatorStyle = .none
         loadData()
-//        let FilterVC = storyboard?.instantiateViewController(withIdentifier: "ShooterFilter") as! ShooterFilterController
-//        FilterVC.delegate = self
 
     }
 
@@ -63,15 +61,44 @@ class PhotographerViewController: UIViewController, UITableViewDelegate, UITable
         if let imageName = photographer["image"] as? String{
             cell.photographerImage.loadImageUsingCacheUsingImageName(imageName: imageName)
         }
-        cell.photographerImage.alpha = 0
-        cell.photographerImage.alpha = 0
-        
-        UIView.animate(withDuration: 0.4, animations: {
-            cell.photographerImage.alpha = 1
-            cell.photographerImage.alpha = 1
+        let uid = photographer["uid"] as? String
+        Database.database().reference().child("posts").queryOrdered(byChild: "uid").queryEqual(toValue: uid).observeSingleEvent(of: .value, with: {
+            (DataSnapshot) in
+            if let postsDictionary = DataSnapshot.value as? [String: AnyObject]{
+                for postIns in postsDictionary{
+                    let post = Post()
+                    post.setValuesForKeys(postIns.value as! [String : Any])
+                    self.posts.append(post)
+                }
+            }
+        if(self.posts.count > 0){
+            print(self.posts[0])
+            cell.randomPic1.loadPostImageUsingCacheUsingImageName(imageName: self.posts[0].image!)
+        }
+        if(self.posts.count > 1){
+            print(self.posts[0])
+            cell.randomPic2.loadPostImageUsingCacheUsingImageName(imageName: self.posts[1].image!)
+        }
+        if(self.posts.count > 2){
+            print(self.posts[0])
+            cell.randomPic3.loadPostImageUsingCacheUsingImageName(imageName: self.posts[2].image!)
+        }
         })
-        return cell
-    }
+        cell.photographerImage.alpha = 0
+            cell.photographerImage.alpha = 0
+            cell.randomPic1.alpha = 0
+            cell.randomPic2.alpha = 0
+            cell.randomPic3.alpha = 0
+            
+            UIView.animate(withDuration: 0.4, animations: {
+                cell.photographerImage.alpha = 1
+                cell.photographerImage.alpha = 1
+                cell.randomPic1.alpha = 1
+                cell.randomPic2.alpha = 1
+                cell.randomPic3.alpha = 1
+            })
+            return cell
+}
     
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -79,6 +106,11 @@ class PhotographerViewController: UIViewController, UITableViewDelegate, UITable
             let NextViewController = segue.destination as! UserModelViewController
             NextViewController.type = "photographer"
             NextViewController.user = self.userid
+        }
+        
+        if(segue.identifier == "FilterSeg"){
+            let NextViewController = segue.destination as! ShooterFilterController
+            NextViewController.delegate = self
         }
     }
     
@@ -93,17 +125,23 @@ class PhotographerViewController: UIViewController, UITableViewDelegate, UITable
             self.photographerTableView.deselectRow(at: index, animated: true)
         }
     }
+  
     
-//    func filterByName(name: String?) {
-//        photographers.removeAllObjects()
-//        Database.database().reference().child("user").queryOrdered(byChild: "type").queryEqual(toValue: "photographer").queryOrdered(byChild: "username").queryEqual(toValue: name).observeSingleEvent(of: .value, with: {
-//            (DataSnapshot) in
-//            if let photographersDictionary = DataSnapshot.value as? [String: AnyObject]{
-//                for photographer in photographersDictionary{
-//                    self.photographers.add(photographer.value)
-//                }
-//                self.photographerTableView.reloadData()
-//            }
-//        })
-//    }
+    
+    func filterByName(name: String?) {
+        photographers.removeAllObjects()
+        Database.database().reference().child("user").queryOrdered(byChild: "type").queryEqual(toValue: "photographer").observeSingleEvent(of: .value, with: {
+            (DataSnapshot) in
+            if let modelsDictionary = DataSnapshot.value as? [String: AnyObject]{
+                for model in modelsDictionary{
+                    let dict = model.value as! [String: AnyObject]
+                    if(dict["username"] as? String == name!){
+                        self.photographers.add(model.value)
+                    }
+                }
+                self.photographerTableView.reloadData()
+            }
+        })
+    }
+    
 }

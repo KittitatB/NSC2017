@@ -19,6 +19,7 @@ class ActivityPostViewController: UIViewController {
     var typeAction:UIAlertController!
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround() 
         typeAction = UIAlertController(title: "Choose Post Type", message: "คุณต้องการตั้งกิจกรรมแบบใด", preferredStyle: UIAlertControllerStyle.actionSheet)
         let photographerHire = UIAlertAction(title: "จ้างช่างภาพ", style: UIAlertActionStyle.default) { (action) in
             self.type.titleLabel?.text = "จ้างช่างภาพ"

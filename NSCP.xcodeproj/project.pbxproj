@@ -43,6 +43,9 @@
 		4EE234B4200A0C75007FCEE8 /* UserMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE234B3200A0C75007FCEE8 /* UserMessageViewController.swift */; };
 		4EE234B6200A0FE0007FCEE8 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE234B5200A0FE0007FCEE8 /* UserCell.swift */; };
 		4EE234B8200A1031007FCEE8 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE234B7200A1031007FCEE8 /* Message.swift */; };
+		4EEBFA07202D998100B0499D /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEBFA06202D998100B0499D /* CommentViewController.swift */; };
+		4EEBFA09202D9A6000B0499D /* Commend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEBFA08202D9A6000B0499D /* Commend.swift */; };
+		4EEBFA0B202D9B5200B0499D /* CommentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEBFA0A202D9B5200B0499D /* CommentCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -85,6 +88,9 @@
 		4EE234B3200A0C75007FCEE8 /* UserMessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserMessageViewController.swift; sourceTree = "<group>"; };
 		4EE234B5200A0FE0007FCEE8 /* UserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		4EE234B7200A1031007FCEE8 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		4EEBFA06202D998100B0499D /* CommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
+		4EEBFA08202D9A6000B0499D /* Commend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Commend.swift; sourceTree = "<group>"; };
+		4EEBFA0A202D9B5200B0499D /* CommentCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentCollectionViewCell.swift; sourceTree = "<group>"; };
 		96E9668CD8D419EE3F4F4FB8 /* Pods-NSCP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NSCP.release.xcconfig"; path = "Pods/Target Support Files/Pods-NSCP/Pods-NSCP.release.xcconfig"; sourceTree = "<group>"; };
 		CE22FA5C72730EAC4C68E043 /* Pods_NSCP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NSCP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -124,6 +130,7 @@
 				4EE234B7200A1031007FCEE8 /* Message.swift */,
 				4EA18EC5200C9A5C00000D97 /* Post.swift */,
 				4EA46C2B201C9B5200B21A15 /* Activity.swift */,
+				4EEBFA08202D9A6000B0499D /* Commend.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -138,6 +145,7 @@
 				4EE234B5200A0FE0007FCEE8 /* UserCell.swift */,
 				4EA18ECA200E138A00000D97 /* MessageCollectionCell.swift */,
 				4E5CF75A2020D99B003C62C1 /* LocationTableViewCell.swift */,
+				4EEBFA0A202D9B5200B0499D /* CommentCollectionViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -145,6 +153,7 @@
 		4E7DBB111F5D1E2F00BBB634 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				4EEBFA06202D998100B0499D /* CommentViewController.swift */,
 				4EE2349E20050648007FCEE8 /* MessageViewController.swift */,
 				4EB3BC4C1F9352E800A7E446 /* PostViewController.swift */,
 				4E9995121F4EAD5A0069E481 /* ViewController.swift */,
@@ -362,6 +371,7 @@
 				4E9718EE1FBA14AF00B6C507 /* ModelTableViewController.swift in Sources */,
 				4E5CF75B2020D99B003C62C1 /* LocationTableViewCell.swift in Sources */,
 				4EDB5EDB1FA600410035106C /* UserViewController.swift in Sources */,
+				4EEBFA07202D998100B0499D /* CommentViewController.swift in Sources */,
 				4E3298481FED5AFF000A9094 /* UserCollectionViewCell.swift in Sources */,
 				4E7DBB0E1F5D1E1400BBB634 /* LoginTextField.swift in Sources */,
 				4E32984A1FFB832B000A9094 /* ActivitiesViewController.swift in Sources */,
@@ -369,6 +379,7 @@
 				4EDB5ED91FA373520035106C /* PhotographerViewController.swift in Sources */,
 				4E9995131F4EAD5A0069E481 /* ViewController.swift in Sources */,
 				4E05C79F2020271C002D20EE /* ShowPostViewController.swift in Sources */,
+				4EEBFA0B202D9B5200B0499D /* CommentCollectionViewCell.swift in Sources */,
 				4EA18EC6200C9A5C00000D97 /* Post.swift in Sources */,
 				4E32984C1FFB834C000A9094 /* ActivityPostViewController.swift in Sources */,
 				4EA18ECB200E138A00000D97 /* MessageCollectionCell.swift in Sources */,
@@ -378,6 +389,7 @@
 				4EE2349F20050648007FCEE8 /* MessageViewController.swift in Sources */,
 				4EDB5ED31FA36CD70035106C /* ViewWithBorder.swift in Sources */,
 				4EE234B8200A1031007FCEE8 /* Message.swift in Sources */,
+				4EEBFA09202D9A6000B0499D /* Commend.swift in Sources */,
 				4EA18EC9200DFAED00000D97 /* Extensions.swift in Sources */,
 				4E9995111F4EAD5A0069E481 /* AppDelegate.swift in Sources */,
 				4EB3BC511F9C946E00A7E446 /* CircleImageView.swift in Sources */,

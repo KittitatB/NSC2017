@@ -27,6 +27,7 @@ class MessageViewController: UIViewController, UICollectionViewDelegate, UIColle
         collectionview.alwaysBounceVertical = true
         navigationItem.backBarButtonItem?.title = "DM"
         messageTextfield.placeholder = "Enter Message.."
+        self.hideKeyboardWhenTappedAround()
     }
 
     override func didReceiveMemoryWarning() {

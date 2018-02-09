@@ -19,7 +19,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         let attributedString = NSAttributedString(string: "Don't Have An Account?", attributes: [NSForegroundColorAttributeName:UIColor.white, NSUnderlineStyleAttributeName:1])
         Don.setAttributedTitle(attributedString, for: .normal)
-        
+        self.hideKeyboardWhenTappedAround() 
     }
 
     override var shouldAutorotate: Bool {
