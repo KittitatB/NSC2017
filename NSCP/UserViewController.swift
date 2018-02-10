@@ -146,7 +146,14 @@ class UserViewController: UIViewController,UICollectionViewDelegate,UICollection
             let NextViewController = segue.destination as! ShowPostViewController
             NextViewController.post = sendPost
         }
+        if (segue.identifier == "userToComment"){
+            let NextViewController = segue.destination as! CommentViewController
+            NextViewController.user = Auth.auth().currentUser?.uid
+        }
     }
     
+    @IBAction func viewComment(_ sender: Any) {
+        performSegue(withIdentifier: "userToComment", sender: self)
+    }
     
 }

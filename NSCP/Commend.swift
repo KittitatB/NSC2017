@@ -9,5 +9,7 @@
 import UIKit
 
 class Commend: NSObject {
+    var fromId: String?
     var text: String?
+    var timestamp: NSNumber?
 }

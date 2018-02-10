@@ -147,11 +147,19 @@ class UserModelViewController: UIViewController,UICollectionViewDelegate,UIColle
             let NextViewController = segue.destination as! MessageViewController
             NextViewController.user = self.user
         }
+        if (segue.identifier == "userComment"){
+            let NextViewController = segue.destination as! CommentViewController
+            NextViewController.user = self.user
+        }
     }
     
     @IBAction func showMessageController(_ sender: AnyObject) {
         self.performSegue(withIdentifier: "Messenger", sender: self.user)
     }
     
+    
+    @IBAction func showComment(_ sender: Any) {
+        self.performSegue(withIdentifier: "userComment", sender: self.user)
+    }
     
 }
