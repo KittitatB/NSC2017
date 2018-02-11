@@ -12,6 +12,7 @@ class Activity: NSObject {
     var Moquantity: NSNumber?
     var PGquantity: NSNumber?
     var action: String?
+    var date: String?
     var descriptioner: String?
     var header: String?
     var joined: NSNumber?
@@ -19,4 +20,5 @@ class Activity: NSObject {
     var timestamp: NSNumber?
     var type: String?
     var uid: String?
+    var key: String?
 }

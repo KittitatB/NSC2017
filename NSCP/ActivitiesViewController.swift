@@ -16,7 +16,7 @@ class ActivitiesViewController: UIViewController,UITableViewDelegate, UITableVie
     
     var activities = [Activity]()
     var sendActivity = Activity()
-    
+    var key = [String]()
     override func viewDidLoad() {
         super.viewDidLoad()
         tableview.dataSource = self
@@ -32,6 +32,7 @@ class ActivitiesViewController: UIViewController,UITableViewDelegate, UITableVie
                 for activityDic in activitiesDictionary{
                     let activity = Activity()
                     activity.setValuesForKeys(activityDic.value as! [String : Any])
+                    activity.setValue(activityDic.key, forKey: "key")
                     self.activities.append(activity)
                     self.activities.sort(by: { (first, secound) -> Bool in
                         return (first.timestamp?.intValue)! > (secound.timestamp?.intValue)!

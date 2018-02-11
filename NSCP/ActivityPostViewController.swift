@@ -51,8 +51,10 @@ class ActivityPostViewController: UIViewController {
                     if let quantity = quantity.text {
                         if let location = location.text {
                         if let des = des.text {
+                            if let date = date.text {
                             let number = NSNumber(value: Int(quantity)!)
                             let activityObject = [
+                                "date" : date,
                                 "uid" : uid,
                                 "header" : header,
                                 "type" : type,
@@ -76,6 +78,7 @@ class ActivityPostViewController: UIViewController {
                             alert.addAction(postAction)
                             self.present(alert, animated: true, completion: nil)
                             print("Post to Firebase.")
+                            }
                             }
                         }
                     }

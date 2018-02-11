@@ -51,10 +51,12 @@ class OpenTripViewController: UIViewController {
                         if let MOquantity = POquantity.text {
                         if let des = des.text {
                             if let location = location.text {
+                            if let date = date.text {
                             let Pnumber = NSNumber(value: Int(PGquantity)!)
                             let Mnumber = NSNumber(value: Int(MOquantity)!)
 
                             let activityObject = [
+                                "date" : date,
                                 "uid" : uid,
                                 "header" : header,
                                 "type" : type,
@@ -77,6 +79,7 @@ class OpenTripViewController: UIViewController {
                             alert.addAction(postAction)
                             self.present(alert, animated: true, completion: nil)
                             print("Post to Firebase.")
+                            }
                             }
                             }
                         }
