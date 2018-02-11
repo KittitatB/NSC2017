@@ -126,7 +126,10 @@ class PhotographerViewController: UIViewController, UITableViewDelegate, UITable
         }
     }
   
-    
+    @IBAction func filterDidPress(_ sender: AnyObject) {
+        performSegue(withIdentifier: "FilterSeg", sender: self)
+        
+    }
     
     func filterByName(name: String?) {
         photographers.removeAllObjects()
@@ -136,6 +139,27 @@ class PhotographerViewController: UIViewController, UITableViewDelegate, UITable
                 for model in modelsDictionary{
                     let dict = model.value as! [String: AnyObject]
                     if(dict["username"] as? String == name!){
+                        self.photographers.add(model.value)
+                    }
+                }
+                self.photographerTableView.reloadData()
+            }
+        })
+    }
+    
+    func resetData() {
+        photographers.removeAllObjects()
+        loadData()
+    }
+    
+    func filterByInterest(interest: String?) {
+        photographers.removeAllObjects()
+        Database.database().reference().child("user").queryOrdered(byChild: "type").queryEqual(toValue: "photographer").observeSingleEvent(of: .value, with: {
+            (DataSnapshot) in
+            if let modelsDictionary = DataSnapshot.value as? [String: AnyObject]{
+                for model in modelsDictionary{
+                    let dict = model.value as! [String: AnyObject]
+                    if(dict["location"] as? String == interest!){
                         self.photographers.add(model.value)
                     }
                 }

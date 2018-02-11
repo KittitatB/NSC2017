@@ -112,7 +112,12 @@ class ShowActivityViewController: UIViewController {
             print(userType!)
             let activityRef = Database.database().reference().child("activity-user").child(userType!).child(self.activity.key!)
             activityRef.updateChildValues([uid!: 1])
-
+            let alert = UIAlertController(title: "Success", message: "Your joined ths activity!", preferredStyle: .alert)
+            let postAction = UIAlertAction(title: "OK!", style: UIAlertActionStyle.default) { (action) in
+                _ = self.navigationController?.popViewController(animated: true)
+            }
+            alert.addAction(postAction)
+            self.present(alert, animated: true, completion: nil)
         })
     }
 

@@ -10,18 +10,29 @@ import UIKit
 
 protocol FilterUserDelegate {
     func filterByName(name: String?)
+    func resetData()
+    func filterByInterest(interest: String?)
 }
 
 class ShooterFilterController: UIViewController {
-
-    @IBOutlet weak var nameFilter: UITextField!
-    @IBOutlet weak var interestFilter: UITextField!
+    @IBOutlet weak var textfield: UITextField!
+    var filterer:UIAlertController!
     var delegate: FilterUserDelegate?
-    
+    var filterMode: Int = 0
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.hideKeyboardWhenTappedAround() 
-        // Do any additional setup after loading the view.
+        self.hideKeyboardWhenTappedAround()
+        filterer = UIAlertController(title: "Choose Your Filterer", message: "ต้องการฟิลเตอร์จากอะไร", preferredStyle: UIAlertControllerStyle.actionSheet)
+        let namefilter = UIAlertAction(title: "Name", style: UIAlertActionStyle.default) { (action) in
+            self.filterMode = 1
+        }
+        let interestFilter = UIAlertAction(title: "Interest", style: UIAlertActionStyle.default) { (action) in
+            self.filterMode = 2
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        filterer.addAction(namefilter)
+        filterer.addAction(interestFilter)
+        filterer.addAction(cancelAction)
     }
 
     override func didReceiveMemoryWarning() {
@@ -30,9 +41,23 @@ class ShooterFilterController: UIViewController {
     }
     
     @IBAction func filter(_ sender: AnyObject) {
-        delegate?.filterByName(name: nameFilter.text!)
-        _ = navigationController?.popViewController(animated: true)
+        if(filterMode == 0){
+            delegate?.resetData()
+            _ = navigationController?.popViewController(animated: true)
+        }
+        if(filterMode == 1){
+            delegate?.filterByName(name: textfield.text!)
+            _ = navigationController?.popViewController(animated: true)
+        }
+        if(filterMode == 2){
+            delegate?.filterByInterest(interest: textfield.text!)
+            _ = navigationController?.popViewController(animated: true)
+        }
     }
 
+    
+    @IBAction func chooseFilterer(_ sender: Any) {
+        self.present(filterer, animated: true, completion: nil)
+    }
 
 }

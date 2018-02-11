@@ -151,6 +151,28 @@ class ModelTableViewController: UIViewController, UITableViewDelegate, UITableVi
         
     }
     
+    func resetData() {
+        models.removeAllObjects()
+        loadData()
+    }
+    
+    func filterByInterest(interest: String?) {
+        models.removeAllObjects()
+        Database.database().reference().child("user").queryOrdered(byChild: "type").queryEqual(toValue: "model").observeSingleEvent(of: .value, with: {
+            (DataSnapshot) in
+            if let modelsDictionary = DataSnapshot.value as? [String: AnyObject]{
+                for model in modelsDictionary{
+                    let dict = model.value as! [String: AnyObject]
+                    if(dict["location"] as? String == interest!){
+                        self.models.add(model.value)
+                    }
+                }
+                self.modelTableView.reloadData()
+            }
+        })
+    }
+
+    
 }
     
     
