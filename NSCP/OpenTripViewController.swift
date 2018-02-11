@@ -1,8 +1,8 @@
 //
-//  ActivityPostViewController.swift
+//  OpenTripViewController.swift
 //  NSCP
 //
-//  Created by MuMhu on 1/2/2561 BE.
+//  Created by MuMhu on 2/11/2561 BE.
 //  Copyright © 2561 MuMhu. All rights reserved.
 //
 
@@ -10,22 +10,21 @@ import UIKit
 import Firebase
 import FirebaseAuth
 
-class ActivityPostViewController: UIViewController {
+class OpenTripViewController: UIViewController {
 
     @IBOutlet weak var header: UITextField!
     @IBOutlet weak var type: UIButton!
-    @IBOutlet weak var quantity: UITextField!
     @IBOutlet weak var des: UITextField!
+    @IBOutlet weak var PGquantity: UITextField!    
+    @IBOutlet weak var POquantity: UITextField!
     var typeAction:UIAlertController!
     @IBOutlet weak var date: UITextField!
-    
     @IBOutlet weak var location: UITextField!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
-        navigationItem.title = "จ้างช่างภาพ"
-        typeAction = UIAlertController(title: "Choose Post Type", message: "คุณต้องการเลือกการจ้างแบบใด", preferredStyle: UIAlertControllerStyle.actionSheet)
+        navigationItem.title = "เปิดทริป"
+        typeAction = UIAlertController(title: "Choose Post Type", message: "คุณต้องการเลือกทริปแบบใด", preferredStyle: UIAlertControllerStyle.actionSheet)
         let halfDay = UIAlertAction(title: "Half Day", style: UIAlertActionStyle.default) { (action) in
             self.type.titleLabel?.text = "Half Day"
         }
@@ -37,10 +36,10 @@ class ActivityPostViewController: UIViewController {
         typeAction.addAction(fullDay)
         typeAction.addAction(cancelAction)
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-       
+        
     }
     
     @IBAction func postDidTabbed(_ sender: AnyObject) {
@@ -48,27 +47,29 @@ class ActivityPostViewController: UIViewController {
         if let uid = Auth.auth().currentUser?.uid {
             if let header = header.text {
                 if let type = type.titleLabel?.text {
-                    if let quantity = quantity.text {
-                        if let location = location.text {
+                    if let PGquantity = PGquantity.text {
+                        if let MOquantity = POquantity.text {
                         if let des = des.text {
-                            let number = NSNumber(value: Int(quantity)!)
+                            if let location = location.text {
+                            let Pnumber = NSNumber(value: Int(PGquantity)!)
+                            let Mnumber = NSNumber(value: Int(MOquantity)!)
+
                             let activityObject = [
                                 "uid" : uid,
                                 "header" : header,
                                 "type" : type,
-                                "action" : "จ้างช่างภาพ",
-                                "Moquantity" : 0,
-                                "PGquantity" : number,
                                 "location" : location,
+                                "action" : "ทริปถ่ายรูป",
+                                "Moquantity" : Mnumber,
+                                "PGquantity" : Pnumber,
                                 "joined" : 0,
                                 "descriptioner" : des,
                                 "timestamp" : timestamp
-                            ] as [String : Any]
+                                ] as [String : Any]
                             Database.database().reference().child("activities").childByAutoId().setValue(activityObject);
                             
                             let alert = UIAlertController(title: "Success", message: "Your post has been sent!", preferredStyle: .alert)
                             let postAction = UIAlertAction(title: "OK!", style: UIAlertActionStyle.default) { (action) in
-                                //_ = self.navigationController?.popViewController(animated: true)
                                 var viewControllers = self.navigationController?.viewControllers
                                 viewControllers?.removeLast(2) // views to pop
                                 self.navigationController?.setViewControllers(viewControllers!, animated: true)
@@ -76,6 +77,7 @@ class ActivityPostViewController: UIViewController {
                             alert.addAction(postAction)
                             self.present(alert, animated: true, completion: nil)
                             print("Post to Firebase.")
+                            }
                             }
                         }
                     }
@@ -91,5 +93,6 @@ class ActivityPostViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         navigationItem.backBarButtonItem?.title = "Back"
     }
-    
+
+
 }

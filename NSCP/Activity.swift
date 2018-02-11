@@ -9,10 +9,13 @@
 import UIKit
 
 class Activity: NSObject {
+    var Moquantity: NSNumber?
+    var PGquantity: NSNumber?
+    var action: String?
     var descriptioner: String?
     var header: String?
-    var joined:NSNumber?
-    var quantity: NSNumber?
+    var joined: NSNumber?
+    var location: String?
     var timestamp: NSNumber?
     var type: String?
     var uid: String?

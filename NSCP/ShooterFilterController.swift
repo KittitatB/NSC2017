@@ -31,7 +31,7 @@ class ShooterFilterController: UIViewController {
     
     @IBAction func filter(_ sender: AnyObject) {
         delegate?.filterByName(name: nameFilter.text!)
-        navigationController?.popViewController(animated: true)
+        _ = navigationController?.popViewController(animated: true)
     }
 
 

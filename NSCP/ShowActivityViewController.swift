@@ -34,7 +34,7 @@ class ShowActivityViewController: UIViewController {
         header.text = activity.header
         type.text = activity.type
         joined.text = activity.joined?.stringValue
-        quantity.text = activity.quantity?.stringValue
+        quantity.text = String(Int(activity.Moquantity!)+Int(activity.PGquantity!))
         discript.text = activity.descriptioner
         Database.database().reference().child("user").queryOrdered(byChild: "uid").queryEqual(toValue: activity.uid).observe(.childAdded, with: { (DataSnapshot) in
             let dict = DataSnapshot.value as! [String: AnyObject]

@@ -64,9 +64,9 @@ class ActivitiesViewController: UIViewController,UITableViewDelegate, UITableVie
         // Configure the cell...
         let activity = self.activities[indexPath.row]
         cell.header.text = activity.header
-        cell.type.text = activity.type
+        cell.type.text = activity.action
         cell.detail.text = activity.descriptioner
-        cell.quantity.text = activity.quantity?.stringValue
+        cell.quantity.text = String(Int(activity.Moquantity!)+Int(activity.PGquantity!))
         Database.database().reference().child("user").queryOrdered(byChild: "uid").queryEqual(toValue: activity.uid).observe(.childAdded, with: { (DataSnapshot) in
             let dict = DataSnapshot.value as! [String: AnyObject]
             if let imageName = dict["image"] as? String{
@@ -92,4 +92,5 @@ class ActivitiesViewController: UIViewController,UITableViewDelegate, UITableVie
         sendActivity = activities[indexPath.item]
         self.performSegue(withIdentifier: "showActivity", sender: self)
     }
+    
 }

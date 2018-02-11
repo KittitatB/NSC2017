@@ -57,7 +57,6 @@ class RegisterViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "SetupUser"){
             let NextViewController = segue.destination as! RegisShooterViewController
-            print(type)
             let sendingType = type! as String
             NextViewController.type = sendingType
         }
