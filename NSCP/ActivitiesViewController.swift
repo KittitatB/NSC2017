@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import FirebaseStorage
 
-class ActivitiesViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
+class ActivitiesViewController: UIViewController,UITableViewDelegate, UITableViewDataSource, FilterActivityDelegate {
     
     @IBOutlet weak var tableview: UITableView!
     
@@ -22,6 +22,8 @@ class ActivitiesViewController: UIViewController,UITableViewDelegate, UITableVie
         tableview.dataSource = self
         tableview.delegate = self
         tableview.separatorStyle = .none
+        activities.removeAll()
+        loadData()
     }
 
     func loadData(){
@@ -77,15 +79,14 @@ class ActivitiesViewController: UIViewController,UITableViewDelegate, UITableVie
         return cell
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        activities.removeAll()
-        loadData()
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "showActivity"){
             let NextViewController = segue.destination as! ShowActivityViewController
             NextViewController.activity = sendActivity
+        }
+        if (segue.identifier == "activityFilterSeg"){
+            let NextViewController = segue.destination as! ActivityFilterViewController
+            NextViewController.delegate = self
         }
     }
     
@@ -94,4 +95,84 @@ class ActivitiesViewController: UIViewController,UITableViewDelegate, UITableVie
         self.performSegue(withIdentifier: "showActivity", sender: self)
     }
     
+    
+    @IBAction func filterDidPressed(_ sender: Any) {
+        self.performSegue(withIdentifier: "activityFilterSeg", sender: self)
+    }
+    
+    func resetData() {
+        loadData()
+    }
+    
+    func filterByName(name: String?) {
+        activities.removeAll()
+        self.tableview.reloadData()
+        Database.database().reference().child("user").queryOrdered(byChild: "username").queryEqual(toValue: name!).observe(.childAdded, with: { (DataSnapshot) in
+            let dict = DataSnapshot.value as! [String: AnyObject]
+            let uid = dict["uid"] as? String
+            Database.database().reference().child("activities").queryOrdered(byChild: "uid").queryEqual(toValue: uid!).observeSingleEvent(of: .value, with: {
+                (DataSnapshot) in
+                if let activitiesDictionary = DataSnapshot.value as? [String: AnyObject]{
+                    for activityDic in activitiesDictionary{
+                        let activity = Activity()
+                        activity.setValuesForKeys(activityDic.value as! [String : Any])
+                        activity.setValue(activityDic.key, forKey: "key")
+                        self.activities.append(activity)
+                        self.activities.sort(by: { (first, secound) -> Bool in
+                            return (first.timestamp?.intValue)! > (secound.timestamp?.intValue)!
+                        })
+                    }
+                    DispatchQueue.main.async {
+                        self.tableview.reloadData()
+                    }
+                }
+            })
+
+        })
+
+    }
+    
+    func filterByLocation(location: String?) {
+        activities.removeAll()
+        self.tableview.reloadData()
+        Database.database().reference().child("activities").queryOrdered(byChild: "location").queryEqual(toValue: location!).observeSingleEvent(of: .value, with: {
+            (DataSnapshot) in
+            if let activitiesDictionary = DataSnapshot.value as? [String: AnyObject]{
+                for activityDic in activitiesDictionary{
+                    let activity = Activity()
+                    activity.setValuesForKeys(activityDic.value as! [String : Any])
+                    activity.setValue(activityDic.key, forKey: "key")
+                    self.activities.append(activity)
+                    self.activities.sort(by: { (first, secound) -> Bool in
+                        return (first.timestamp?.intValue)! > (secound.timestamp?.intValue)!
+                    })
+                }
+                DispatchQueue.main.async {
+                    self.tableview.reloadData()
+                }
+            }
+        })
+    }
+    
+    func filterByType(type: String?) {
+        activities.removeAll()
+        self.tableview.reloadData()
+        Database.database().reference().child("activities").queryOrdered(byChild: "action").queryEqual(toValue: type!).observeSingleEvent(of: .value, with: {
+            (DataSnapshot) in
+            if let activitiesDictionary = DataSnapshot.value as? [String: AnyObject]{
+                for activityDic in activitiesDictionary{
+                    let activity = Activity()
+                    activity.setValuesForKeys(activityDic.value as! [String : Any])
+                    activity.setValue(activityDic.key, forKey: "key")
+                    self.activities.append(activity)
+                    self.activities.sort(by: { (first, secound) -> Bool in
+                        return (first.timestamp?.intValue)! > (secound.timestamp?.intValue)!
+                    })
+                }
+                DispatchQueue.main.async {
+                    self.tableview.reloadData()
+                }
+            }
+        })
+    }
 }

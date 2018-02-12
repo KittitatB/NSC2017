@@ -8,7 +8,7 @@
 
 import UIKit
 import Firebase
-class LocationViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
+class LocationViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,FilterLocationDelegate {
     @IBOutlet weak var tableview: UITableView!
     var locations = [String()]
     override func viewDidLoad() {
@@ -72,10 +72,55 @@ class LocationViewController: UIViewController,UITableViewDataSource,UITableView
                     self.tableview.reloadData()
                 }
             }
-            print(self.locations)
         })
     }
     
+    
+    @IBAction func filterDidPress(_ sender: AnyObject) {
+        performSegue(withIdentifier: "locationFilterSeg", sender: self)
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if (segue.identifier == "ModelUser"){
+//            let NextViewController = segue.destination as! UserModelViewController
+//            NextViewController.type = "model"
+//            NextViewController.user = self.userid
+//        }
+        
+        if(segue.identifier == "locationFilterSeg"){
+            let NextViewController = segue.destination as! LocationFilterViewController
+            NextViewController.delegate = self
+        }
+    }
+    
+    func filterByName(name: String?) {
+        locations.removeAll()
+        self.tableview.reloadData()
+        let postsRef = Database.database().reference().child("posts").queryOrdered(byChild: "location").queryEqual(toValue: name!)
+        postsRef.observeSingleEvent(of: .value, with: { (SnapShot) in
+            if let postsDictionary = SnapShot.value as? [String: AnyObject]{
+                for postsDic in postsDictionary{
+                    let post = Post()
+                    post.setValuesForKeys(postsDic.value as! [String : Any])
+                    if !self.locations.contains(post.location!){
+                        self.locations.append(post.location!)
+                    }
+                }
+                if self.locations.contains(""){
+                    self.locations.removeFirst()
+                }
+                DispatchQueue.main.async {
+                    self.tableview.reloadData()
+                }
+            }
+        })
+    }
+    
+    func resetData() {
+        locations.removeAll()
+        loadData()
+    }
     
 
 }

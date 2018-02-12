@@ -19,14 +19,19 @@ class ShooterFilterController: UIViewController {
     var filterer:UIAlertController!
     var delegate: FilterUserDelegate?
     var filterMode: Int = 0
+    
+    @IBOutlet weak var filterButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
         filterer = UIAlertController(title: "Choose Your Filterer", message: "ต้องการฟิลเตอร์จากอะไร", preferredStyle: UIAlertControllerStyle.actionSheet)
         let namefilter = UIAlertAction(title: "Name", style: UIAlertActionStyle.default) { (action) in
+            self.filterButton.setTitle("Name", for: .normal)
             self.filterMode = 1
         }
         let interestFilter = UIAlertAction(title: "Interest", style: UIAlertActionStyle.default) { (action) in
+            self.filterButton.setTitle("Interest", for: .normal)
             self.filterMode = 2
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)

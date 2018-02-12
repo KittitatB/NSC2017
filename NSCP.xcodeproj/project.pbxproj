@@ -22,6 +22,8 @@
 		4E8DCB92202EDD92006D8D6A /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8DCB91202EDD92006D8D6A /* CommentTableViewCell.swift */; };
 		4E8DCB94203038ED006D8D6A /* ActivityPostModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8DCB93203038ED006D8D6A /* ActivityPostModelController.swift */; };
 		4E8DCB9620303FF9006D8D6A /* OpenTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8DCB9520303FF9006D8D6A /* OpenTripViewController.swift */; };
+		4E8DCB9A2031762D006D8D6A /* ActivityFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8DCB992031762D006D8D6A /* ActivityFilterViewController.swift */; };
+		4E8DCB9E2031EF4F006D8D6A /* LocationFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8DCB9D2031EF4F006D8D6A /* LocationFilterViewController.swift */; };
 		4E9718EC1FBA146700B6C507 /* ModelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9718EB1FBA146700B6C507 /* ModelTableViewCell.swift */; };
 		4E9718EE1FBA14AF00B6C507 /* ModelTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9718ED1FBA14AF00B6C507 /* ModelTableViewController.swift */; };
 		4E9995111F4EAD5A0069E481 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9995101F4EAD5A0069E481 /* AppDelegate.swift */; };
@@ -66,6 +68,8 @@
 		4E8DCB91202EDD92006D8D6A /* CommentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		4E8DCB93203038ED006D8D6A /* ActivityPostModelController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityPostModelController.swift; sourceTree = "<group>"; };
 		4E8DCB9520303FF9006D8D6A /* OpenTripViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenTripViewController.swift; sourceTree = "<group>"; };
+		4E8DCB992031762D006D8D6A /* ActivityFilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityFilterViewController.swift; sourceTree = "<group>"; };
+		4E8DCB9D2031EF4F006D8D6A /* LocationFilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationFilterViewController.swift; sourceTree = "<group>"; };
 		4E9718EB1FBA146700B6C507 /* ModelTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelTableViewCell.swift; sourceTree = "<group>"; };
 		4E9718ED1FBA14AF00B6C507 /* ModelTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelTableViewController.swift; sourceTree = "<group>"; };
 		4E99950D1F4EAD5A0069E481 /* NSCP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NSCP.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -157,6 +161,8 @@
 		4E7DBB111F5D1E2F00BBB634 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				4E8DCB9D2031EF4F006D8D6A /* LocationFilterViewController.swift */,
+				4E8DCB992031762D006D8D6A /* ActivityFilterViewController.swift */,
 				4EEBFA06202D998100B0499D /* CommentViewController.swift */,
 				4EE2349E20050648007FCEE8 /* MessageViewController.swift */,
 				4EB3BC4C1F9352E800A7E446 /* PostViewController.swift */,
@@ -388,6 +394,7 @@
 				4E9995131F4EAD5A0069E481 /* ViewController.swift in Sources */,
 				4E05C79F2020271C002D20EE /* ShowPostViewController.swift in Sources */,
 				4EA18EC6200C9A5C00000D97 /* Post.swift in Sources */,
+				4E8DCB9A2031762D006D8D6A /* ActivityFilterViewController.swift in Sources */,
 				4E32984C1FFB834C000A9094 /* ActivityPostViewController.swift in Sources */,
 				4EA18ECB200E138A00000D97 /* MessageCollectionCell.swift in Sources */,
 				4EE234B4200A0C75007FCEE8 /* UserMessageViewController.swift in Sources */,
@@ -395,6 +402,7 @@
 				4E9718EC1FBA146700B6C507 /* ModelTableViewCell.swift in Sources */,
 				4EE2349F20050648007FCEE8 /* MessageViewController.swift in Sources */,
 				4E8DCB92202EDD92006D8D6A /* CommentTableViewCell.swift in Sources */,
+				4E8DCB9E2031EF4F006D8D6A /* LocationFilterViewController.swift in Sources */,
 				4EDB5ED31FA36CD70035106C /* ViewWithBorder.swift in Sources */,
 				4EE234B8200A1031007FCEE8 /* Message.swift in Sources */,
 				4EEBFA09202D9A6000B0499D /* Commend.swift in Sources */,
