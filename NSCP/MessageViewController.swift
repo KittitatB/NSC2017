@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import UserNotifications
 class MessageViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout  {
 
     @IBOutlet weak var messageTextfield: UITextField!
@@ -22,6 +23,14 @@ class MessageViewController: UIViewController, UICollectionViewDelegate, UIColle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        let content = UNMutableNotificationContent()
+//        content.title = "title"
+//        content.body = "body"
+//        content.sound = UNNotificationSound.default()
+//        let request = UNNotificationRequest(identifier: "testIdentifier", content: content, trigger: UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false))
+//        
+//        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+//        
         collectionview.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 0, right: 0)
         collectionview.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         collectionview.alwaysBounceVertical = true

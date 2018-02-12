@@ -8,9 +8,12 @@
 
 import UIKit
 import Firebase
+import FirebaseMessaging
+import FirebaseInstanceID
+import UserNotifications
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
 
@@ -19,6 +22,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         UITabBar.appearance().tintColor = UIColor(red: 56/255.0, green: 155/255.0, blue: 185/255.0, alpha: 1.0)
         UINavigationBar.appearance().tintColor = UIColor(red: 56/255.0, green: 155/255.0, blue: 185/255.0, alpha: 1.0)
+        
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { (grant, error) in
+            print("granted: \(grant)")
+        }
+        
+        application.registerForRemoteNotifications()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.refreshToken(notification:)), name: NSNotification.Name.InstanceIDTokenRefresh, object: nil)
         return true
     }
 
@@ -28,8 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        Messaging.messaging().shouldEstablishDirectChannel = false
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
@@ -37,13 +47,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        FBHandler()
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+    
+    func refreshToken(notification: NSNotification){
+        let refreshToken = InstanceID.instanceID().token()!
+        print("testToken")
+        print(refreshToken)
+        FBHandler()
+    }
 
-
+    func FBHandler(){
+        Messaging.messaging().shouldEstablishDirectChannel = true
+    }
 }
 
