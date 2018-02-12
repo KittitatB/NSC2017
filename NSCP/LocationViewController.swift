@@ -11,6 +11,7 @@ import Firebase
 class LocationViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,FilterLocationDelegate {
     @IBOutlet weak var tableview: UITableView!
     var locations = [String()]
+    var sendLocation: String?
     override func viewDidLoad() {
         super.viewDidLoad()
         loadData()
@@ -82,15 +83,25 @@ class LocationViewController: UIViewController,UITableViewDataSource,UITableView
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if (segue.identifier == "ModelUser"){
-//            let NextViewController = segue.destination as! UserModelViewController
-//            NextViewController.type = "model"
-//            NextViewController.user = self.userid
-//        }
+        if (segue.identifier == "viewLocation"){
+            let NextViewController = segue.destination as! ShowLocationViewController
+            NextViewController.location = self.sendLocation
+        }
         
         if(segue.identifier == "locationFilterSeg"){
             let NextViewController = segue.destination as! LocationFilterViewController
             NextViewController.delegate = self
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.sendLocation = locations[indexPath.item]
+        performSegue(withIdentifier: "viewLocation", sender: self.sendLocation)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if let index = self.tableview.indexPathForSelectedRow{
+            self.tableview.deselectRow(at: index, animated: true)
         }
     }
     

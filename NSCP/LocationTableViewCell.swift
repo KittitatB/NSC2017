@@ -2,14 +2,13 @@
 //  LocationTableViewCell.swift
 //  NSCP
 //
-//  Created by MuMhu on 1/30/2561 BE.
+//  Created by MuMhu on 2/12/2561 BE.
 //  Copyright © 2561 MuMhu. All rights reserved.
 //
 
 import UIKit
 
 class LocationTableViewCell: UITableViewCell {
-    
     @IBOutlet weak var image1: UIImageView!
     @IBOutlet weak var image2: UIImageView!
     @IBOutlet weak var image3: UIImageView!
@@ -20,10 +19,10 @@ class LocationTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
 

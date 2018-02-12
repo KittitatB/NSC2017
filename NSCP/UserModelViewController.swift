@@ -138,10 +138,6 @@ class UserModelViewController: UIViewController,UICollectionViewDelegate,UIColle
     
     
     
-    override func viewWillAppear(_ animated: Bool) {
-        
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "Messenger"){
             let NextViewController = segue.destination as! MessageViewController

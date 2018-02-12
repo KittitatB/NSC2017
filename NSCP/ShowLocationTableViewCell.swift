@@ -1,20 +1,17 @@
 //
-//  CommentTableViewCell.swift
+//  ShowLocationTableViewCell.swift
 //  NSCP
 //
-//  Created by MuMhu on 2/10/2561 BE.
+//  Created by MuMhu on 2/12/2561 BE.
 //  Copyright © 2561 MuMhu. All rights reserved.
 //
 
 import UIKit
 
-class CommentTableViewCell: UITableViewCell {
+class ShowLocationTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var commentImage: CircleImageView!
-    @IBOutlet weak var commentName: UILabel!
-    
-    @IBOutlet weak var commentTextview: UITextView!
-    
+    @IBOutlet weak var cellImage: UIImageView!
+    @IBOutlet weak var cellName: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -26,5 +23,4 @@ class CommentTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-    
 }
