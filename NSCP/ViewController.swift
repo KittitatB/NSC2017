@@ -17,7 +17,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var Don: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-        let attributedString = NSAttributedString(string: "Don't Have An Account?", attributes: [NSForegroundColorAttributeName:UIColor.white, NSUnderlineStyleAttributeName:1])
+        let attributedString = NSAttributedString(string: "Don't Have An Account?", attributes: [NSAttributedStringKey.foregroundColor:UIColor.white, NSAttributedStringKey.underlineStyle:1])
         Don.setAttributedTitle(attributedString, for: .normal)
         self.hideKeyboardWhenTappedAround() 
     }

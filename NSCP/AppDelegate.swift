@@ -54,7 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
-    func refreshToken(notification: NSNotification){
+    @objc func refreshToken(notification: NSNotification){
         let refreshToken = InstanceID.instanceID().token()!
         print("testToken")
         print(refreshToken)
