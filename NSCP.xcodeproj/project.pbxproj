@@ -17,6 +17,7 @@
 		4E32984E1FFB9224000A9094 /* ActivitiesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E32984D1FFB9224000A9094 /* ActivitiesTableViewCell.swift */; };
 		4E32987820024E0B000A9094 /* UserModelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E32987720024E0B000A9094 /* UserModelViewController.swift */; };
 		4E5CF75D2020DE63003C62C1 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5CF75C2020DE63003C62C1 /* LocationViewController.swift */; };
+		4E7442A320887052003FB2FC /* SendContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7442A220887052003FB2FC /* SendContactViewController.swift */; };
 		4E7DBB0E1F5D1E1400BBB634 /* LoginTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7DBB0D1F5D1E1400BBB634 /* LoginTextField.swift */; };
 		4E8DCB92202EDD92006D8D6A /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8DCB91202EDD92006D8D6A /* CommentTableViewCell.swift */; };
 		4E8DCB94203038ED006D8D6A /* ActivityPostModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8DCB93203038ED006D8D6A /* ActivityPostModelController.swift */; };
@@ -65,6 +66,7 @@
 		4E32984D1FFB9224000A9094 /* ActivitiesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivitiesTableViewCell.swift; sourceTree = "<group>"; };
 		4E32987720024E0B000A9094 /* UserModelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModelViewController.swift; sourceTree = "<group>"; };
 		4E5CF75C2020DE63003C62C1 /* LocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
+		4E7442A220887052003FB2FC /* SendContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendContactViewController.swift; sourceTree = "<group>"; };
 		4E7DBB0D1F5D1E1400BBB634 /* LoginTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTextField.swift; sourceTree = "<group>"; };
 		4E8DCB91202EDD92006D8D6A /* CommentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		4E8DCB93203038ED006D8D6A /* ActivityPostModelController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityPostModelController.swift; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 				4E8DCB93203038ED006D8D6A /* ActivityPostModelController.swift */,
 				4E8DCB9520303FF9006D8D6A /* OpenTripViewController.swift */,
 				4E8DCB9F2031F873006D8D6A /* ShowLocationViewController.swift */,
+				4E7442A220887052003FB2FC /* SendContactViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -374,6 +377,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E7442A320887052003FB2FC /* SendContactViewController.swift in Sources */,
 				4E9995251F4EBCD50069E481 /* RegisterViewController.swift in Sources */,
 				4EDB5ED51FA370940035106C /* PhotographerTableViewCell.swift in Sources */,
 				4EB3BC531F9C9B6900A7E446 /* RegisShooterViewController.swift in Sources */,
